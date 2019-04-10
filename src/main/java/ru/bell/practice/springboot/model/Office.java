@@ -48,7 +48,7 @@ public class Office {
     private Boolean isActive;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "org_id")
+    @JoinColumn(name = "org_id", insertable=false, updatable=false)
     private Organization organization;
 
     public Office() {
@@ -111,37 +111,5 @@ public class Office {
 
     public void setOrganization(Organization organization) {
         this.organization = organization;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Office office = (Office) o;
-        return id.equals(office.id) &&
-                version.equals(office.version) &&
-                orgId.equals(office.orgId) &&
-                name.equals(office.name) &&
-                address.equals(office.address) &&
-                Objects.equals(phone, office.phone) &&
-                Objects.equals(isActive, office.isActive);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, version, orgId, name, address, phone, isActive);
-    }
-
-    @Override
-    public String toString() {
-        return "Office{" +
-                "id=" + id +
-                ", version=" + version +
-                ", orgId=" + orgId +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isActive=" + isActive +
-                '}';
     }
 }

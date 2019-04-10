@@ -39,14 +39,14 @@ CREATE TABLE IF NOT EXISTS User (
 COMMENT ON TABLE User IS 'Работник';
 
 CREATE TABLE IF NOT EXISTS Doc (
-  doc_code INTEGER     NOT NULL COMMENT 'Код документа' PRIMARY KEY,
+  doc_code BIGINT     NOT NULL COMMENT 'Код документа' PRIMARY KEY,
   version  INTEGER     NOT NULL COMMENT 'Служебное поле Hibernate',
   doc_name VARCHAR(50) NOT NULL COMMENT 'Наименомание удовстверения'
 );
 COMMENT ON TABLE Doc IS 'Справочник удовстверений';
 
 CREATE TABLE IF NOT EXISTS Country (
-  citizenship_code INTEGER     NOT NULL COMMENT 'Код гражданства' PRIMARY KEY ,
+  citizenship_code BIGINT     NOT NULL COMMENT 'Код гражданства' PRIMARY KEY ,
   version          INTEGER     NOT NULL COMMENT 'Служебное поле Hibernate',
   citizenship_name VARCHAR(50) NOT NULL COMMENT 'Наименомание гражданства'
 );

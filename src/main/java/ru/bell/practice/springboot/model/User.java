@@ -1,8 +1,7 @@
 package ru.bell.practice.springboot.model;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.Objects;
+import java.util.Date;
 
 @Entity(name = "User")
 public class User {
@@ -45,22 +44,22 @@ public class User {
     /**
      * Ид офиса
      */
+
     @Column(name = "office_id")
     private Long officeId;
+
 
     /**
      *Гражданство
      */
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "citizenship_Code")
-    @Column(name = "citizenship_Code")
+
+    @Column(name = "citizenship_code")
     private Long citizenshipCode;
 
     /**
      * Ид документа
      */
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "doc_code")
+
     @Column(name = "doc_code")
     private Long docCode;
 
@@ -89,9 +88,19 @@ public class User {
     @Column(name = "is_identified")
     private Boolean isIdentified;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "office_id")
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "office_id", insertable=false, updatable=false)
     private Office office;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "citizenship_code", insertable=false, updatable=false)
+    private Country citizenshipId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doc_code", insertable=false, updatable=false)
+    private Doc docId;
+
 
     public User() {
 
@@ -140,30 +149,6 @@ public class User {
         this.position = position;
     }
 
-    public Long getOfficeId() {
-        return officeId;
-    }
-
-    public void setOfficeId(Long officeId) {
-        this.officeId = officeId;
-    }
-
-    public Long getCitizenshipCode() {
-        return citizenshipCode;
-    }
-
-    public void setCitizenshipCode(Long citizenshipCode) {
-        this.citizenshipCode = citizenshipCode;
-    }
-
-    public Long getDocCode() {
-        return docCode;
-    }
-
-    public void setDocCode(Long docCode) {
-        this.docCode = docCode;
-    }
-
     public Date getDocDate() {
         return docDate;
     }
@@ -204,47 +189,43 @@ public class User {
         this.office = office;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id.equals(user.id) &&
-                version.equals(user.version) &&
-                firstName.equals(user.firstName) &&
-                Objects.equals(secondName, user.secondName) &&
-                Objects.equals(middleName, user.middleName) &&
-                position.equals(user.position) &&
-                Objects.equals(officeId, user.officeId) &&
-                Objects.equals(citizenshipCode, user.citizenshipCode) &&
-                Objects.equals(docCode, user.docCode) &&
-                Objects.equals(docDate, user.docDate) &&
-                Objects.equals(docNumber, user.docNumber) &&
-                Objects.equals(phone, user.phone) &&
-                Objects.equals(isIdentified, user.isIdentified);
+    public Country getCitizenshipId() {
+        return citizenshipId;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, version, firstName, secondName, middleName, position, officeId, citizenshipCode, docCode, docDate, docNumber, phone, isIdentified);
+    public void setCitizenshipId(Country citizenshipId) {
+        this.citizenshipId = citizenshipId;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", version=" + version +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", position='" + position + '\'' +
-                ", officeId=" + officeId +
-                ", citizenshipCode=" + citizenshipCode +
-                ", docCode=" + docCode +
-                ", docDate=" + docDate +
-                ", docNumber=" + docNumber +
-                ", phone='" + phone + '\'' +
-                ", isIdentified=" + isIdentified +
-                '}';
+    public Doc getDocId() {
+        return docId;
+    }
+
+    public void setDocId(Doc docId) {
+        this.docId = docId;
+    }
+
+    public Long getOfficeId() {
+        return officeId;
+    }
+
+    public void setOfficeId(Long officeId) {
+        this.officeId = officeId;
+    }
+
+    public Long getCitizenshipCode() {
+        return citizenshipCode;
+    }
+
+    public void setCitizenshipCode(Long citizenshipCode) {
+        this.citizenshipCode = citizenshipCode;
+    }
+
+    public Long getDocCode() {
+        return docCode;
+    }
+
+    public void setDocCode(Long docCode) {
+        this.docCode = docCode;
     }
 }

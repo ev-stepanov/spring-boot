@@ -134,40 +134,4 @@ public class Organization {
     public void setActive(Boolean active) {
         isActive = active;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Organization that = (Organization) o;
-        return id.equals(that.id) &&
-                version.equals(that.version) &&
-                name.equals(that.name) &&
-                fullName.equals(that.fullName) &&
-                inn.equals(that.inn) &&
-                kpp.equals(that.kpp) &&
-                address.equals(that.address) &&
-                Objects.equals(phone, that.phone) &&
-                Objects.equals(isActive, that.isActive);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, version, name, fullName, inn, kpp, address, phone, isActive);
-    }
-
-    @Override
-    public String toString() {
-        return "Organization{" +
-                "id=" + id +
-                ", version=" + version +
-                ", name='" + name + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", inn=" + inn +
-                ", kpp=" + kpp +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isActive=" + isActive +
-                '}';
-    }
 }
