@@ -20,13 +20,13 @@ public class Office {
     /**
      * Ид организации
      */
-    @Column(name = "org_id")
+    @Column(name = "org_id", nullable = false)
     private Long orgId;
 
     /**
      * Название офиса
      */
-    @Column(name = "name", length = 50)
+    @Column(length = 50)
     private String name;
 
     /**
@@ -111,5 +111,39 @@ public class Office {
 
     public void setOrganization(Organization organization) {
         this.organization = organization;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Office office = (Office) o;
+        return id.equals(office.id) &&
+                version.equals(office.version) &&
+                orgId.equals(office.orgId) &&
+                Objects.equals(name, office.name) &&
+                Objects.equals(address, office.address) &&
+                Objects.equals(phone, office.phone) &&
+                Objects.equals(isActive, office.isActive) &&
+                Objects.equals(organization, office.organization);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, version, orgId, name, address, phone, isActive, organization);
+    }
+
+    @Override
+    public String toString() {
+        return "Office{" +
+                "id=" + id +
+                ", version=" + version +
+                ", orgId=" + orgId +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isActive=" + isActive +
+                ", organization=" + organization +
+                '}';
     }
 }

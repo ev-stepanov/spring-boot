@@ -1,7 +1,6 @@
 package ru.bell.practice.springboot.model;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity(name = "User")
 public class User {
@@ -53,28 +52,9 @@ public class User {
      *Гражданство
      */
 
-    @Column(name = "citizenship_code")
-    private Long citizenshipCode;
+    @Column(name = "citizenship_id")
+    private Long citizenshipId;
 
-    /**
-     * Ид документа
-     */
-
-    @Column(name = "doc_code")
-    private Long docCode;
-
-    /**
-     * Дата регистрации
-     */
-    @Temporal(TemporalType.DATE)
-    @Column(name = "doc_date")
-    private Date docDate;
-
-    /**
-     *Номер документа
-     */
-    @Column(name = "doc_number")
-    private Long docNumber;
 
     /**
      * Номер телефона
@@ -83,24 +63,23 @@ public class User {
     private String phone;
 
     /**
-     * Идантифицирован?
+     * Действителен?
      */
     @Column(name = "is_identified")
     private Boolean isIdentified;
-
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "office_id", insertable=false, updatable=false)
     private Office office;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "citizenship_code", insertable=false, updatable=false)
-    private Country citizenshipId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "citizenship_id", insertable=false, updatable=false)
+    private Country citizenship;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "doc_code", insertable=false, updatable=false)
-    private Doc docId;
-
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "id")
+    @MapsId
+    private DocUser docUser;
 
     public User() {
 
@@ -110,6 +89,7 @@ public class User {
         this.officeId = officeId;
         this.firstName = firstName;
         this.position = position;
+        this.isIdentified = true;
         this.version = 0;
     }
 
@@ -149,22 +129,6 @@ public class User {
         this.position = position;
     }
 
-    public Date getDocDate() {
-        return docDate;
-    }
-
-    public void setDocDate(Date docDate) {
-        this.docDate = docDate;
-    }
-
-    public Long getDocNumber() {
-        return docNumber;
-    }
-
-    public void setDocNumber(Long docNumber) {
-        this.docNumber = docNumber;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -189,20 +153,12 @@ public class User {
         this.office = office;
     }
 
-    public Country getCitizenshipId() {
-        return citizenshipId;
+    public Country getCitizenship() {
+        return citizenship;
     }
 
-    public void setCitizenshipId(Country citizenshipId) {
-        this.citizenshipId = citizenshipId;
-    }
-
-    public Doc getDocId() {
-        return docId;
-    }
-
-    public void setDocId(Doc docId) {
-        this.docId = docId;
+    public void setCitizenship(Country citizenship) {
+        this.citizenship = citizenship;
     }
 
     public Long getOfficeId() {
@@ -213,19 +169,19 @@ public class User {
         this.officeId = officeId;
     }
 
-    public Long getCitizenshipCode() {
-        return citizenshipCode;
+    public Long getCitizenshipId() {
+        return citizenshipId;
     }
 
-    public void setCitizenshipCode(Long citizenshipCode) {
-        this.citizenshipCode = citizenshipCode;
+    public void setCitizenshipId(Long citizenshipId) {
+        this.citizenshipId = citizenshipId;
     }
 
-    public Long getDocCode() {
-        return docCode;
+    public DocUser getDocUser() {
+        return docUser;
     }
 
-    public void setDocCode(Long docCode) {
-        this.docCode = docCode;
+    public void setDocUser(DocUser docUser) {
+        this.docUser = docUser;
     }
 }

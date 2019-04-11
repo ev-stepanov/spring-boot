@@ -6,14 +6,20 @@ import javax.persistence.*;
 public class Country {
 
     @Id
-    @Column(name = "citizenship_code")
-    private Long citizenshipCode;
+    @Column
+    private Long id;
 
     /**
      * Специальное поле Hibernate
      */
     @Version
     private Integer version;
+
+    /**
+     * Код гражданства
+     */
+    @Column(name = "citizenship_code")
+    private Long citizenshipCode;
 
     /**
      * Гражданство
@@ -31,18 +37,31 @@ public class Country {
         this.version = 0;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Long getCitizenshipCode() {
         return citizenshipCode;
+    }
+
+    public void setCitizenshipCode(Long citizenshipCode) {
+        this.citizenshipCode = citizenshipCode;
     }
 
     public String getCitizenshipName() {
         return citizenshipName;
     }
 
+    public void setCitizenshipName(String citizenshipName) {
+        this.citizenshipName = citizenshipName;
+    }
+
     @Override
     public String toString() {
         return "Country{" +
-                "citizenshipCode=" + citizenshipCode +
+                "id=" + id +
+                ", citizenshipCode=" + citizenshipCode +
                 ", citizenshipName='" + citizenshipName + '\'' +
                 '}';
     }

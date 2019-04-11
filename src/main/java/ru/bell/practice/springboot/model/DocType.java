@@ -3,11 +3,11 @@ package ru.bell.practice.springboot.model;
 import javax.persistence.*;
 
 @Entity(name = "Doc")
-public class Doc {
+public class DocType {
 
     @Id
-    @Column(name = "doc_code")
-    private Long docCode;
+    @Column
+    private Long id;
 
     /**
      * Специальное поле Hibernate
@@ -15,6 +15,11 @@ public class Doc {
     @Version
     private Integer version;
 
+    /**
+     * Код документа
+     */
+    @Column(name = "doc_code")
+    private String docCode;
 
     /**
      * Наименование документа
@@ -22,17 +27,21 @@ public class Doc {
     @Column(name = "doc_name")
     private String docName;
 
-    public Doc() {
+    public DocType() {
 
     }
 
-    public Doc(Long docCode, String docName) {
+    public DocType(String docCode, String docName) {
         this.docCode = docCode;
         this.docName = docName;
         this.version = 0;
     }
 
-    public Long getDocCode() {
+    public Long getId() {
+        return id;
+    }
+
+    public String getDocCode() {
         return docCode;
     }
 
@@ -40,10 +49,19 @@ public class Doc {
         return docName;
     }
 
+    public void setDocCode(String docCode) {
+        this.docCode = docCode;
+    }
+
+    public void setDocName(String docName) {
+        this.docName = docName;
+    }
+
     @Override
     public String toString() {
-        return "Doc{" +
-                "docCode=" + docCode +
+        return "DocType{" +
+                "id=" + id +
+                ", docCode=" + docCode +
                 ", docName='" + docName + '\'' +
                 '}';
     }
