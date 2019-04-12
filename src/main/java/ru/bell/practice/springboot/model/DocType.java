@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class DocType {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 

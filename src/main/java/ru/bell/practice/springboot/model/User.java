@@ -2,6 +2,10 @@ package ru.bell.practice.springboot.model;
 
 import javax.persistence.*;
 
+/**
+ *Пользователь
+ */
+
 @Entity(name = "User")
 public class User {
 
@@ -40,6 +44,9 @@ public class User {
     @Column(length = 100, nullable = false)
     private String position;
 
+    @Column(name = "doc_user_id")
+    private Long docUserId;
+
     /**
      * Ид офиса
      */
@@ -77,8 +84,7 @@ public class User {
     private Country citizenship;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "id")
-    @MapsId
+    @JoinColumn(name = "doc_user_id", insertable = false, updatable = false)
     private DocUser docUser;
 
     public User() {
@@ -183,5 +189,13 @@ public class User {
 
     public void setDocUser(DocUser docUser) {
         this.docUser = docUser;
+    }
+
+    public Long getDocUserId() {
+        return docUserId;
+    }
+
+    public void setDocUserId(Long docUserId) {
+        this.docUserId = docUserId;
     }
 }
