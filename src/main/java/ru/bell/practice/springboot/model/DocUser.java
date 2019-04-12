@@ -6,6 +6,7 @@ import java.util.Date;
 @Entity(name = "Doc_user")
 public class DocUser {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
