@@ -17,12 +17,6 @@ public class DocUser {
     private Integer version;
 
     /**
-     * Ид документа
-     */
-    @Column(name = "doc_id")
-    private Long docId;
-
-    /**
      * Дата регистрации
      */
     @Temporal(TemporalType.DATE)
@@ -38,8 +32,8 @@ public class DocUser {
     /**
      * Тип документа
      */
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "doc_id", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "doc_id")
     private DocType docType;
 
     public DocUser() {
@@ -54,14 +48,6 @@ public class DocUser {
 
     public Long getId() {
         return id;
-    }
-
-    public Long getDocId() {
-        return docId;
-    }
-
-    public void setDocId(Long docId) {
-        this.docId = docId;
     }
 
     public Date getDocDate() {
@@ -85,7 +71,6 @@ public class DocUser {
         return "DocUser{" +
                 "id=" + id +
                 ", version=" + version +
-                ", docId=" + docId +
                 ", docDate=" + docDate +
                 ", docNumber='" + docNumber + '\'' +
                 ", docType=" + docType +

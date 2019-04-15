@@ -18,12 +18,6 @@ public class Office {
     private Integer version;
 
     /**
-     * Ид организации
-     */
-    @Column(name = "org_id", nullable = false)
-    private Long orgId;
-
-    /**
      * Название офиса
      */
     @Column(length = 50)
@@ -47,30 +41,20 @@ public class Office {
     @Column(name = "is_active")
     private Boolean isActive;
 
+    /**
+     * Организация
+     */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "org_id", insertable=false, updatable=false)
+    @JoinColumn(name = "org_id")
     private Organization organization;
 
     public Office() {
-
-    }
-
-    public Office(Long orgId) {
-        this.orgId = orgId;
         this.isActive = true;
         this.version = 0;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public Long getOrgId() {
-        return orgId;
-    }
-
-    public void setOrgId(Long orgId) {
-        this.orgId = orgId;
     }
 
     public String getName() {
@@ -120,7 +104,6 @@ public class Office {
         Office office = (Office) o;
         return id.equals(office.id) &&
                 version.equals(office.version) &&
-                orgId.equals(office.orgId) &&
                 Objects.equals(name, office.name) &&
                 Objects.equals(address, office.address) &&
                 Objects.equals(phone, office.phone) &&
@@ -130,7 +113,7 @@ public class Office {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, version, orgId, name, address, phone, isActive, organization);
+        return Objects.hash(id, version, name, address, phone, isActive, organization);
     }
 
     @Override
@@ -138,7 +121,6 @@ public class Office {
         return "Office{" +
                 "id=" + id +
                 ", version=" + version +
-                ", orgId=" + orgId +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +

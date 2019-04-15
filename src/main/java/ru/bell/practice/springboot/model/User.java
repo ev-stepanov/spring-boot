@@ -5,7 +5,6 @@ import javax.persistence.*;
 /**
  *Пользователь
  */
-
 @Entity(name = "User")
 public class User {
 
@@ -44,25 +43,6 @@ public class User {
     @Column(length = 100, nullable = false)
     private String position;
 
-    @Column(name = "doc_user_id")
-    private Long docUserId;
-
-    /**
-     * Ид офиса
-     */
-
-    @Column(name = "office_id")
-    private Long officeId;
-
-
-    /**
-     *Гражданство
-     */
-
-    @Column(name = "citizenship_id")
-    private Long citizenshipId;
-
-
     /**
      * Номер телефона
      */
@@ -75,24 +55,32 @@ public class User {
     @Column(name = "is_identified")
     private Boolean isIdentified;
 
+    /**
+     * Ид офиса
+     */
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "office_id", insertable=false, updatable=false)
+    @JoinColumn(name = "office_id")
     private Office office;
 
+    /**
+     *Гражданство
+     */
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "citizenship_id", insertable=false, updatable=false)
+    @JoinColumn(name = "citizenship_id")
     private Country citizenship;
 
+    /**
+     * Документ пользователя
+     */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "doc_user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "doc_user_id")
     private DocUser docUser;
 
     public User() {
 
     }
 
-    public User(Long officeId, String firstName, String position) {
-        this.officeId = officeId;
+    public User(String firstName, String position) {
         this.firstName = firstName;
         this.position = position;
         this.isIdentified = true;
@@ -167,35 +155,11 @@ public class User {
         this.citizenship = citizenship;
     }
 
-    public Long getOfficeId() {
-        return officeId;
-    }
-
-    public void setOfficeId(Long officeId) {
-        this.officeId = officeId;
-    }
-
-    public Long getCitizenshipId() {
-        return citizenshipId;
-    }
-
-    public void setCitizenshipId(Long citizenshipId) {
-        this.citizenshipId = citizenshipId;
-    }
-
     public DocUser getDocUser() {
         return docUser;
     }
 
     public void setDocUser(DocUser docUser) {
         this.docUser = docUser;
-    }
-
-    public Long getDocUserId() {
-        return docUserId;
-    }
-
-    public void setDocUserId(Long docUserId) {
-        this.docUserId = docUserId;
     }
 }
