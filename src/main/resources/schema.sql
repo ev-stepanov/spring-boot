@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Organization (
-  id        BIGINT NOT NULL         COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
+  orgId        BIGINT NOT NULL         COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
   version   INTEGER NOT NULL        COMMENT 'Служебное поле Hibernate',
   name      VARCHAR(50) NOT NULL    COMMENT 'Название организации',
   full_name VARCHAR(255) NOT NULL   COMMENT 'Полное название организации',
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Organization (
 COMMENT ON TABLE Organization IS 'Организация';
 
 CREATE TABLE IF NOT EXISTS Office (
-  id        BIGINT        NOT NULL  COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
+  orgId        BIGINT        NOT NULL  COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
   version   INTEGER       NOT NULL  COMMENT 'Служебное поле Hibernate',
   org_id    BIGINT        NOT NULL  COMMENT 'Уникальный идентификатор организации',
   name      VARCHAR(50)             COMMENT 'Название офиса',
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Office (
 COMMENT ON TABLE Office IS 'Офис';
 
 CREATE TABLE IF NOT EXISTS User (
-  id                BIGINT        NOT NULL      COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
+  orgId                BIGINT        NOT NULL      COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
   version           INTEGER       NOT NULL      COMMENT 'Служебное поле Hibernate',
   office_id         BIGINT                      COMMENT 'Универсальный идентификатор офиса',
   first_name        VARCHAR(50)   NOT NULL      COMMENT 'Имя',
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS User (
 COMMENT ON TABLE User IS 'Пользователь';
 
 CREATE TABLE IF NOT EXISTS Doc_user (
-  id          BIGINT      NOT NULL  COMMENT 'Идентификатор ползователя' PRIMARY KEY ,
+  orgId          BIGINT      NOT NULL  COMMENT 'Идентификатор ползователя' PRIMARY KEY ,
   version     INTEGER     NOT NULL  COMMENT 'Служебное поле Hibernate',
   doc_id      BIGINT                COMMENT 'Код удостоверения',
   doc_date    DATE                  COMMENT 'Дата регистрации удостверения',
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS Doc_user (
 COMMENT ON TABLE Doc_user IS 'Документ конкретного пользователя';
 
 CREATE TABLE IF NOT EXISTS Doc_type (
-  id       BIGINT      NOT NULL COMMENT 'Ид документа' PRIMARY KEY,
+  orgId       BIGINT      NOT NULL COMMENT 'Ид документа' PRIMARY KEY,
   version  INTEGER     NOT NULL COMMENT 'Служебное поле Hibernate',
   doc_code BIGINT      NOT NULL COMMENT 'Код документа',
   doc_name VARCHAR(50) NOT NULL COMMENT 'Наименомание удовстверения'
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS Doc_type (
 COMMENT ON TABLE Doc_type IS 'Справочник удовстверений';
 
 CREATE TABLE IF NOT EXISTS Country (
-  id               BIGINT      NOT NULL COMMENT 'Ид гражданства' PRIMARY KEY ,
+  orgId               BIGINT      NOT NULL COMMENT 'Ид гражданства' PRIMARY KEY ,
   version          INTEGER     NOT NULL COMMENT 'Служебное поле Hibernate',
   citizenship_code BIGINT      NOT NULL COMMENT 'Код гражданства' ,
   citizenship_name VARCHAR(50) NOT NULL COMMENT 'Наименомание гражданства'
@@ -62,16 +62,16 @@ CREATE TABLE IF NOT EXISTS Country (
 COMMENT ON TABLE Country IS 'Справочник гражданств';
 
 CREATE INDEX IX_Office_Organization_Id ON Office (org_id);
-ALTER TABLE Office ADD FOREIGN KEY (org_id) REFERENCES Organization(id);
+ALTER TABLE Office ADD FOREIGN KEY (org_id) REFERENCES Organization(orgId);
 
 CREATE INDEX IX_User_Office_Id ON User (office_id);
-ALTER TABLE User ADD FOREIGN KEY (office_id) REFERENCES Office(id);
+ALTER TABLE User ADD FOREIGN KEY (office_id) REFERENCES Office(orgId);
 
 CREATE INDEX IX_User_Country_Id ON User (citizenship_id);
-ALTER TABLE User ADD FOREIGN KEY (citizenship_id) REFERENCES Country(id);
+ALTER TABLE User ADD FOREIGN KEY (citizenship_id) REFERENCES Country(orgId);
 
 CREATE INDEX IX_Doc_user_Doc_type_Id ON Doc_user (doc_id);
-ALTER TABLE Doc_user ADD FOREIGN KEY (doc_id) REFERENCES Doc_type(id);
+ALTER TABLE Doc_user ADD FOREIGN KEY (doc_id) REFERENCES Doc_type(orgId);
 
 CREATE INDEX IX_User_Doc_user_Id ON User (doc_user_id);
-ALTER TABLE User ADD FOREIGN KEY (doc_user_id) REFERENCES Doc_user(id);
+ALTER TABLE User ADD FOREIGN KEY (doc_user_id) REFERENCES Doc_user(orgId);

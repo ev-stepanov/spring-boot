@@ -21,14 +21,14 @@ public class OrganizationController {
 
     @ApiOperation(value = "Get a list of all organizations by name", httpMethod = "POST")
     @PostMapping(value = "/list")
-    public List<OrganizationView> getListOrganizations(@RequestBody OrganizationFilterView organization) {
+    public List<OrganizationView> getListOrganizationsByFilter(@RequestBody OrganizationFilterView organization) {
         return Collections.emptyList();
     }
 
     @ApiOperation(value = "Get the organization by id ", httpMethod = "GET")
     @GetMapping("/{id}")
-    public List<OrganizationView> organizations(@PathVariable("id") Long organization_id) {
-        return Collections.emptyList();
+    public OrganizationView getListOrganizationById(@PathVariable("id") Long organization_id) {
+        return null;
     }
 
     @ApiOperation(value = "Update of information about the organization", httpMethod = "POST")
