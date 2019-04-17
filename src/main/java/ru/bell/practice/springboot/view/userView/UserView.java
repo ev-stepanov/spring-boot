@@ -1,0 +1,113 @@
+package ru.bell.practice.springboot.view.userView;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class UserView {
+    private Long id;
+    private String firstName;
+    private String secondName;
+    private String middleName;
+    private String position;
+    private String phone;
+    private Boolean isIdentified;
+    private Long officeId;
+    private Long citizenshipId;
+    private Long docUserId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Boolean getIdentified() {
+        return isIdentified;
+    }
+
+    public void setIdentified(Boolean identified) {
+        isIdentified = identified;
+    }
+
+    public Long getOfficeId() {
+        return officeId;
+    }
+
+    public void setOfficeId(Long officeId) {
+        this.officeId = officeId;
+    }
+
+    public Long getCitizenshipId() {
+        return citizenshipId;
+    }
+
+    public void setCitizenshipId(Long citizenshipId) {
+        this.citizenshipId = citizenshipId;
+    }
+
+    public Long getDocUserId() {
+        return docUserId;
+    }
+
+    public void setDocUserId(Long docUserId) {
+        this.docUserId = docUserId;
+    }
+
+    @Override
+    public String toString() {
+        return "UserView{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", position='" + position + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isIdentified=" + isIdentified +
+                ", officeId=" + officeId +
+                ", citizenshipId=" + citizenshipId +
+                ", docUserId=" + docUserId +
+                '}';
+    }
+}
