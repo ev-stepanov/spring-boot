@@ -2,9 +2,7 @@ package ru.bell.practice.springboot.view.organizationView;
 
 import javax.validation.constraints.NotNull;
 
-public class OrganizationByNameView {
-
-    private  Long id;
+public class OrganizationFilterView {
 
     @NotNull(message = "name cannot be null")
     private String name;
@@ -39,7 +37,7 @@ public class OrganizationByNameView {
 
     @Override
     public String toString() {
-        return "OrganizationByNameView{" +
+        return "OrganizationFilterView{" +
                 "name='" + name + '\'' +
                 ", inn='" + inn + '\'' +
                 ", isActive=" + isActive +

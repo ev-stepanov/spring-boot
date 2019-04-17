@@ -1,31 +1,18 @@
 package ru.bell.practice.springboot.view.organizationView;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-public class OrganizationByIdView {
-    @NotNull
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class OrganizationView {
+
     private Long id;
-
-    @NotEmpty(message = "name cannot be null")
     private String name;
-
-    @NotEmpty(message = "fullName cannot be null")
     private String fullName;
-
-    @NotEmpty(message = "inn cannot be null")
     private String inn;
-
-    @NotEmpty(message = "kpp cannot be null")
     private String kpp;
-
-    @NotEmpty(message = "address cannot be null")
     private String address;
-
     private String phone;
-
     private Boolean isActive;
-
 
     public Long getId() {
         return id;
@@ -93,7 +80,7 @@ public class OrganizationByIdView {
 
     @Override
     public String toString() {
-        return "OrganizationByIdView{" +
+        return "OrganizationView{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", fullName='" + fullName + '\'' +
