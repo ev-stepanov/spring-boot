@@ -19,12 +19,4 @@ public class DocView {
     public void setCode(String code) {
         this.code = code;
     }
-
-    @Override
-    public String toString() {
-        return "DocView{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                '}';
-    }
 }

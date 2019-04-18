@@ -11,7 +11,7 @@ INSERT INTO Organization (id, version, name,  full_name, inn, kpp, address, phon
 VALUES (1, 0, 'Microsoft', 'Microsoft Corporation', '6449013711', '644901001', 'USA', '12121234567');
 
 -- Офис №1
-INSERT INTO Office (id, version, org_id,  name, address, phone)
+INSERT INTO Office (id, version, org_id, name, address, phone)
 VALUES (1, 0, 1, 'Microsoft Washington', 'Washington 12', '12126458365');
 
 --Документ работника №1
@@ -22,7 +22,6 @@ VALUES (1, 0, 1, '2015-09-28', '404426');
 INSERT INTO User (id, version, office_id, first_name, second_name, middle_name, doc_user_id,
                   citizenship_id, position, phone)
 VALUES (1, 0, 1, 'Ivan', 'Ivanov', 'Ivanovich', 1, 1, 'Manager', '12125463456');
-
 
 -- Офис №2
 INSERT INTO Office (id, version, org_id,  name, address, phone)
