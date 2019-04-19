@@ -20,21 +20,21 @@ public class Country {
      * Код гражданства
      */
     @Column(name = "citizenship_code")
-    private Long citizenshipCode;
+    private Long code;
 
     /**
      * Гражданство
      */
     @Column(name = "citizenship_name")
-    private String citizenshipName;
+    private String name;
 
     public Country() {
 
     }
 
-    public Country(Long citizenshipCode, String citizenshipName) {
-        this.citizenshipCode = citizenshipCode;
-        this.citizenshipName = citizenshipName;
+    public Country(Long code, String name) {
+        this.code = code;
+        this.name = name;
         this.version = 0;
     }
 
@@ -42,28 +42,19 @@ public class Country {
         return id;
     }
 
-    public Long getCitizenshipCode() {
-        return citizenshipCode;
+    public Long getCode() {
+        return code;
     }
 
-    public void setCitizenshipCode(Long citizenshipCode) {
-        this.citizenshipCode = citizenshipCode;
+    public void setCode(Long code) {
+        this.code = code;
     }
 
-    public String getCitizenshipName() {
-        return citizenshipName;
+    public String getName() {
+        return name;
     }
 
-    public void setCitizenshipName(String citizenshipName) {
-        this.citizenshipName = citizenshipName;
-    }
-
-    @Override
-    public String toString() {
-        return "Country{" +
-                "id=" + id +
-                ", citizenshipCode=" + citizenshipCode +
-                ", citizenshipName='" + citizenshipName + '\'' +
-                '}';
+    public void setName(String name) {
+        this.name = name;
     }
 }

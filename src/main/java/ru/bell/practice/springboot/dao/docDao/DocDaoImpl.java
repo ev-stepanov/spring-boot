@@ -1,4 +1,4 @@
-package ru.bell.practice.springboot.dao;
+package ru.bell.practice.springboot.dao.docDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

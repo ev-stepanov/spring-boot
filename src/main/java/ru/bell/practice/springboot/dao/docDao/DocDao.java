@@ -1,4 +1,4 @@
-package ru.bell.practice.springboot.dao;
+package ru.bell.practice.springboot.dao.docDao;
 
 import ru.bell.practice.springboot.model.DocType;
 

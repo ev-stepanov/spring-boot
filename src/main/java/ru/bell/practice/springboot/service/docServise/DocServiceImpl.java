@@ -3,7 +3,7 @@ package ru.bell.practice.springboot.service.docServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.bell.practice.springboot.dao.DocDao;
+import ru.bell.practice.springboot.dao.docDao.DocDao;
 import ru.bell.practice.springboot.model.DocType;
 import ru.bell.practice.springboot.model.mapper.MapperFacade;
 import ru.bell.practice.springboot.view.docView.DocView;
