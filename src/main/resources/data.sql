@@ -7,8 +7,8 @@ INSERT INTO Country (id, version, citizenship_code, citizenship_name) VALUES (1,
 INSERT INTO Country (id, version, citizenship_code, citizenship_name) VALUES (2, 0, 77, 'Japan');
 
 -- Организация №1
-INSERT INTO Organization (id, version, name,  full_name, inn, kpp, address, phone)
-VALUES (1, 0, 'Microsoft', 'Microsoft Corporation', '6449013711', '644901001', 'USA', '12121234567');
+INSERT INTO Organization (id, version, name,  full_name, inn, kpp, address, phone, is_active)
+VALUES (1, 0, 'Microsoft', 'Microsoft Corporation', '6449013711', '644901001', 'USA', '12121234567', true);
 
 -- Офис №1
 INSERT INTO Office (id, version, org_id, name, address, phone)
@@ -37,8 +37,8 @@ INSERT INTO User (id, version, office_id, first_name, second_name, middle_name, 
 VALUES (2, 0, 2, 'Max', 'Smirnov', 'Alekseevich', 2, 2, 'Consultant', '12125463456');
 
 -- Организация №2
-INSERT INTO Organization (id, version, name,  full_name, inn, kpp, address, phone)
-VALUES (2, 0, 'Sony', 'Sony Corporation', '7722679627', '772201001', 'Japan', '31234567');
+INSERT INTO Organization (id, version, name,  full_name, inn, kpp, address, phone, is_active)
+VALUES (2, 0, 'Sony', 'Sony Corporation', '7722679627', '772201001', 'Japan', '31234567', true);
 
 -- Офис №3
 INSERT INTO Office (id, version, org_id,  name, address, phone)

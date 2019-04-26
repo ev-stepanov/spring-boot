@@ -21,7 +21,7 @@ public class OrganizationSaveView {
 
     private String phone;
 
-    private Boolean isActive;
+    private Boolean isActive = true;
 
     public String getName() {
         return name;
