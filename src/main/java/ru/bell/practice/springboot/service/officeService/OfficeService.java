@@ -19,6 +19,7 @@ public interface OfficeService {
 
     /**
      * Возвращает офис с указанным id.
+     *
      * @param id - идентификатор
      * @return офис с указанным id
      */
@@ -26,6 +27,7 @@ public interface OfficeService {
 
     /**
      * Обновляет данные об офисе
+     *
      * @param officeUpdateView - содержит обновляемые данные об офисе
      */
     void update(OfficeUpdateView officeUpdateView);

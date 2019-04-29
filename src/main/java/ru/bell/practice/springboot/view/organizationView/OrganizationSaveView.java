@@ -21,7 +21,10 @@ public class OrganizationSaveView {
 
     private String phone;
 
-    private Boolean isActive = true;
+    private Boolean isActive;
+
+    public OrganizationSaveView() {
+    }
 
     public String getName() {
         return name;
@@ -77,18 +80,5 @@ public class OrganizationSaveView {
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "OrganizationByIdView{" +
-                ", name='" + name + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", inn='" + inn + '\'' +
-                ", kpp='" + kpp + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isActive=" + isActive +
-                '}';
     }
 }

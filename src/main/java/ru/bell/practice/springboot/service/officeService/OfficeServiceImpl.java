@@ -49,7 +49,7 @@ public class OfficeServiceImpl implements OfficeService {
         }
         Office office = mapperFacade.map(officeInFilterView, Office.class);
 
-        Organization organization = organizationDao.organizationByID(officeInFilterView.getOrgId());
+        Organization organization = organizationDao.getById(officeInFilterView.getOrgId());
         if (organization == null) {
             throw new RecordNotFoundException("Record with id = " + officeInFilterView.getOrgId() + " was not found on Organization.");
         }
@@ -110,7 +110,7 @@ public class OfficeServiceImpl implements OfficeService {
     public void save(OfficeSaveView officeSaveView) {
         validateToSaveView(officeSaveView);
         Office office = mapperFacade.map(officeSaveView, Office.class);
-        office.setOrganization(organizationDao.organizationByID(officeSaveView.getOrgId()));
+        office.setOrganization(organizationDao.getById(officeSaveView.getOrgId()));
         officeDao.save(office);
     }
 
@@ -159,7 +159,7 @@ public class OfficeServiceImpl implements OfficeService {
         if (messageBuilder.length() > 0){
             throw new WrongRequestException(messageBuilder.toString().trim());
         }
-        if (organizationDao.organizationByID(officeSaveView.getOrgId()) == null){
+        if (organizationDao.getById(officeSaveView.getOrgId()) == null){
             throw new RecordNotFoundException("Record with id = " + officeSaveView.getOrgId() + " was not found in Organization.");
         }
     }

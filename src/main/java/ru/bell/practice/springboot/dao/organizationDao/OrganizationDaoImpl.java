@@ -17,14 +17,20 @@ public class OrganizationDaoImpl implements  OrganizationDao {
 
     private final EntityManager em;
 
+    /**
+     *
+     * @param em контекст
+     */
     @Autowired
     public OrganizationDaoImpl(EntityManager em) {
         this.em = em;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public List<Organization> listByName(Organization organization) {
+    public List<Organization> filter(Organization organization) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = criteriaBuilder.createQuery(Organization.class);
         Root<Organization> organizationRoot = criteriaQuery.from(Organization.class);
@@ -40,16 +46,25 @@ public class OrganizationDaoImpl implements  OrganizationDao {
         return query.getResultList();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Organization organizationByID(Long id) {
+    public Organization getById(Long id) {
         return em.find(Organization.class, id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(Organization organization) {
         em.merge(organization);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void save(Organization organization) {
         em.persist(organization);

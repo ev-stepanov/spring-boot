@@ -8,46 +8,58 @@ import ru.bell.practice.springboot.exception.RecordNotFoundException;
 import ru.bell.practice.springboot.exception.WrongRequestException;
 import ru.bell.practice.springboot.model.Organization;
 import ru.bell.practice.springboot.model.mapper.MapperFacade;
-import ru.bell.practice.springboot.view.organizationView.OrganizationFilterView;
-import ru.bell.practice.springboot.view.organizationView.OrganizationSaveView;
-import ru.bell.practice.springboot.view.organizationView.OrganizationUpdateView;
-import ru.bell.practice.springboot.view.organizationView.OrganizationView;
+import ru.bell.practice.springboot.view.organizationView.*;
 
 import java.util.List;
 
+/**
+ * Сервис для работы с организациями
+ */
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
 
     private final MapperFacade mapperFacade;
     private final OrganizationDao organizationDao;
 
+    /**
+     * Конструктор
+     *
+     * @param organizationDao DAO слой для работы с огранизациями
+     * @param mapperFacade Фасад для преобразования между моделями БД и фронта
+     */
     @Autowired
     public OrganizationServiceImpl(OrganizationDao organizationDao, MapperFacade mapperFacade) {
         this.organizationDao = organizationDao;
         this.mapperFacade = mapperFacade;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
-    public List<OrganizationView> listByName(OrganizationFilterView organizationFilterView) {
-        if (organizationFilterView.getName() == null){
+    public List<OrganizationOutFilterView> list(OrganizationInFilterView organizationInFilterView) {
+        if (organizationInFilterView.getName() == null){
             throw new WrongRequestException("Field 'name' is null.");
         }
 
-        Organization organization = mapperFacade.map(organizationFilterView, Organization.class);
-        List<Organization> organizations = organizationDao.listByName(organization);
+        Organization organization = mapperFacade.map(organizationInFilterView, Organization.class);
+        List<Organization> organizations = organizationDao.filter(organization);
 
-        return mapperFacade.mapAsList(organizations, OrganizationView.class);
+        return mapperFacade.mapAsList(organizations, OrganizationOutFilterView.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
-    public OrganizationView organizationByID(Long id) {
+    public OrganizationView getById(Long id) {
         if (id == null) {
             throw new WrongRequestException("Field 'id' is null.");
         }
 
-        Organization organization = organizationDao.organizationByID(id);
+        Organization organization = organizationDao.getById(id);
 
         if (organization == null) {
             throw new RecordNotFoundException("Record with id = " + id + " was not found on Organization");
@@ -56,12 +68,15 @@ public class OrganizationServiceImpl implements OrganizationService {
         return mapperFacade.map(organization, OrganizationView.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void update(OrganizationUpdateView organizationUpdateView) {
         validateView(organizationUpdateView);
 
-        Organization organizationByID = organizationDao.organizationByID(organizationUpdateView.getId());
+        Organization organizationByID = organizationDao.getById(organizationUpdateView.getId());
 
         organizationByID.setName(organizationUpdateView.getName());
         organizationByID.setFullName(organizationUpdateView.getFullName());
@@ -80,6 +95,9 @@ public class OrganizationServiceImpl implements OrganizationService {
         organizationDao.update(organizationByID);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void save(OrganizationSaveView organizationSaveView) {
@@ -120,7 +138,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
         validate(messageBuilder, view.getName(), view.getFullName(), view.getInn(), view.getKpp(), view.getAddress(), view.getPhone());
 
-        if (organizationDao.organizationByID(view.getId()) == null){
+        if (organizationDao.getById(view.getId()) == null){
             throw new RecordNotFoundException("Record with 'id' = " + view.getId() + " was not found on Organization.");
         }
     }

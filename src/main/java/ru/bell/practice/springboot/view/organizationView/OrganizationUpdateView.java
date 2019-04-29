@@ -24,7 +24,10 @@ public class OrganizationUpdateView {
 
     private String phone;
 
-    private Boolean isActive = true;
+    private Boolean isActive;
+
+    public OrganizationUpdateView() {
+    }
 
     public Long getId() {
         return id;
@@ -88,19 +91,5 @@ public class OrganizationUpdateView {
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "OrganizationByIdView{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", inn='" + inn + '\'' +
-                ", kpp='" + kpp + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isActive=" + isActive +
-                '}';
     }
 }

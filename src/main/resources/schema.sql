@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS Office (
   name      VARCHAR(50)             COMMENT 'Название офиса',
   address   VARCHAR(255)            COMMENT 'Адрес офиса',
   phone     VARCHAR(12)             COMMENT 'Номер телефона офиса',
+  is_active BOOLEAN                 COMMENT 'Действует офис?'
 );
 COMMENT ON TABLE Office IS 'Офис';
 

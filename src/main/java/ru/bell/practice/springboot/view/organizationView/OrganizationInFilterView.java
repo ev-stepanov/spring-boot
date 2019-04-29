@@ -2,14 +2,15 @@ package ru.bell.practice.springboot.view.organizationView;
 
 import javax.validation.constraints.NotNull;
 
-public class OrganizationFilterView {
+public class OrganizationInFilterView {
 
     @NotNull(message = "name cannot be null")
     private String name;
-
     private String inn;
-
     private Boolean isActive;
+
+    public OrganizationInFilterView() {
+    }
 
     public String getName() {
         return name;
@@ -33,14 +34,5 @@ public class OrganizationFilterView {
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "OrganizationFilterView{" +
-                "name='" + name + '\'' +
-                ", inn='" + inn + '\'' +
-                ", isActive=" + isActive +
-                '}';
     }
 }

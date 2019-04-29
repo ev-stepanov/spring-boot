@@ -11,8 +11,8 @@ INSERT INTO Organization (id, version, name,  full_name, inn, kpp, address, phon
 VALUES (1, 0, 'Microsoft', 'Microsoft Corporation', '6449013711', '644901001', 'USA', '12121234567', true);
 
 -- Офис №1
-INSERT INTO Office (id, version, org_id, name, address, phone)
-VALUES (1, 0, 1, 'Microsoft Washington', 'Washington 12', '12126458365');
+INSERT INTO Office (id, version, org_id, name, address, phone, is_active)
+VALUES (1, 0, 1, 'Microsoft Washington', 'Washington 12', '12126458365', true);
 
 --Документ работника №1
 INSERT INTO Doc_user(id, version, doc_id, doc_date, doc_number)
@@ -24,8 +24,8 @@ INSERT INTO User (id, version, office_id, first_name, second_name, middle_name, 
 VALUES (1, 0, 1, 'Ivan', 'Ivanov', 'Ivanovich', 1, 1, 'Manager', '12125463456');
 
 -- Офис №2
-INSERT INTO Office (id, version, org_id,  name, address, phone)
-VALUES (2, 0, 1, 'Microsoft New York', 'New York 34', '12127265432');
+INSERT INTO Office (id, version, org_id,  name, address, phone, is_active)
+VALUES (2, 0, 1, 'Microsoft New York', 'New York 34', '12127265432', true);
 
 --Документ работника №2
 INSERT INTO Doc_user(id, version, doc_id, doc_date, doc_number)
@@ -38,11 +38,11 @@ VALUES (2, 0, 2, 'Max', 'Smirnov', 'Alekseevich', 2, 2, 'Consultant', '121254634
 
 -- Организация №2
 INSERT INTO Organization (id, version, name,  full_name, inn, kpp, address, phone, is_active)
-VALUES (2, 0, 'Sony', 'Sony Corporation', '7722679627', '772201001', 'Japan', '31234567', true);
+VALUES (2, 0, 'Sony', 'Sony Corporation', '7722679627', '772201001', 'Japan', '31234567', false);
 
 -- Офис №3
-INSERT INTO Office (id, version, org_id,  name, address, phone)
-VALUES (3, 0, 2, 'Sony Tokio', 'Tokio 112', '3127354');
+INSERT INTO Office (id, version, org_id,  name, address, phone, is_active)
+VALUES (3, 0, 2, 'Sony Tokio', 'Tokio 112', '3127354', true);
 
 --Документ работника №3
 INSERT INTO Doc_user(id, version, doc_id, doc_date, doc_number)
@@ -54,8 +54,8 @@ INSERT INTO User (id, version, office_id, first_name, second_name, middle_name, 
 VALUES (3, 0, 1, 'Anastasia', 'Titova', 'Vassilievna', 3, 1, 'Java Developer', '3127355');
 
 -- Офис №4
-INSERT INTO Office (id, version, org_id,  name, address, phone)
-VALUES (4, 0, 2, 'Sony New York', 'New York 36', '12126458365');
+INSERT INTO Office (id, version, org_id,  name, address, phone, is_active)
+VALUES (4, 0, 2, 'Sony New York', 'New York 36', '12126458365', false);
 
 --Документ работника №4
 INSERT INTO Doc_user(id, version, doc_id, doc_date, doc_number)

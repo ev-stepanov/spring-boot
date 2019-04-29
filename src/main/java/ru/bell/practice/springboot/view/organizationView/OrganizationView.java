@@ -14,6 +14,9 @@ public class OrganizationView {
     private String phone;
     private Boolean isActive;
 
+    public OrganizationView() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -76,19 +79,5 @@ public class OrganizationView {
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "OrganizationView{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", inn='" + inn + '\'' +
-                ", kpp='" + kpp + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isActive=" + isActive +
-                '}';
     }
 }
