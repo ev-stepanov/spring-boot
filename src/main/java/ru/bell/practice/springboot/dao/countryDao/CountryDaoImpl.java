@@ -11,16 +11,26 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/**
+ * DAO слой гражданств
+ */
 @Repository
 public class CountryDaoImpl implements CountryDao {
 
     private final EntityManager em;
 
+    /**
+     * Конструктор
+     * @param em контекст
+     */
     @Autowired
     public CountryDaoImpl(EntityManager em) {
         this.em = em;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Country> list() {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();

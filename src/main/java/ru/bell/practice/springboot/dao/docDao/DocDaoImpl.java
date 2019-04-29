@@ -11,23 +11,34 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/**
+ * DAO слой удостверений
+ */
 @Repository
 public class DocDaoImpl implements DocDao {
 
-    private final EntityManager entityManager;
+    private final EntityManager em;
 
+    /**
+     * Конструктор
+     * @param em контекст
+     */
     @Autowired
-    public DocDaoImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public DocDaoImpl(EntityManager em) {
+        this.em = em;
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<DocType> list() {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<DocType> criteriaQuery = criteriaBuilder.createQuery(DocType.class);
         Root<DocType> docType = criteriaQuery.from(DocType.class);
         criteriaQuery.select(docType);
-        TypedQuery<DocType> query = entityManager.createQuery(criteriaQuery);
+        TypedQuery<DocType> query = em.createQuery(criteriaQuery);
         return query.getResultList();
     }
 }
