@@ -5,18 +5,21 @@ import javax.validation.constraints.NotNull;
 
 public class OfficeUpdateView {
 
-    @NotNull(message = "id cannot be null")
+    @NotNull(message = "id cannot be null.")
     private Long id;
 
-    @NotEmpty(message = "name cannot be empty")
+    @NotEmpty(message = "name cannot be empty.")
     private String name;
 
-    @NotEmpty(message = "address cannot be empty")
+    @NotEmpty(message = "address cannot be empty.")
     private String address;
 
     private String phone;
 
-    private Boolean isActive;
+    private Boolean isActive = true;
+
+    public OfficeUpdateView() {
+    }
 
     public Long getId() {
         return id;
@@ -56,16 +59,5 @@ public class OfficeUpdateView {
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "OfficeUpdateView{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isActive=" + isActive +
-                '}';
     }
 }

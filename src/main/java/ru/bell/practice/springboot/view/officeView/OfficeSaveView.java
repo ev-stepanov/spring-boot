@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 
 public class OfficeSaveView {
 
-    @NotNull(message = "orgId cannot be null")
+    @NotNull(message = "orgId cannot be null.")
     private Long orgId;
 
     private String name;
@@ -13,7 +13,10 @@ public class OfficeSaveView {
 
     private String phone;
 
-    private Boolean isActive;
+    private Boolean isActive = true;
+
+    public OfficeSaveView() {
+    }
 
     public Long getOrgId() {
         return orgId;
@@ -53,17 +56,5 @@ public class OfficeSaveView {
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "OfficeSaveView{" +
-                "orgId=" + orgId +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isActive=" + isActive +
-                ", orgId=" + orgId +
-                '}';
     }
 }

@@ -2,7 +2,7 @@ package ru.bell.practice.springboot.view.officeView;
 
 import javax.validation.constraints.NotNull;
 
-public class OfficeFilterView {
+public class OfficeInFilterView {
     @NotNull(message = "orgId cannot be null")
     private Long orgId;
 
@@ -11,6 +11,9 @@ public class OfficeFilterView {
     private String phone;
 
     private Boolean isActive;
+
+    public OfficeInFilterView() {
+    }
 
     public Long getOrgId() {
         return orgId;
@@ -42,15 +45,5 @@ public class OfficeFilterView {
 
     public void setActive(Boolean active) {
         isActive = active;
-    }
-
-    @Override
-    public String toString() {
-        return "OfficeFilterView{" +
-                "orgId=" + orgId +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isActive=" + isActive +
-                '}';
     }
 }
