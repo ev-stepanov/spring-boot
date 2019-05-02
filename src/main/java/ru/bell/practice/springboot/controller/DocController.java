@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.bell.practice.springboot.response.view.DataResponseView;
 import ru.bell.practice.springboot.service.docServise.DocService;
+import ru.bell.practice.springboot.view.docView.DocView;
+
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -37,7 +39,7 @@ public class DocController {
      */
     @ApiOperation(value = "Get docs list", httpMethod = "GET")
     @GetMapping("/docs")
-    public DataResponseView list() {
-        return new DataResponseView(docService.list());
+    public List<DocView> list() {
+        return docService.list();
     }
 }

@@ -51,7 +51,7 @@ VALUES (3, 0,  2, '2013-11-14', '394426');
 -- Работник №3
 INSERT INTO User (id, version, office_id, first_name, second_name, middle_name, doc_user_id,
                   citizenship_id, position, phone)
-VALUES (3, 0, 1, 'Anastasia', 'Titova', 'Vassilievna', 3, 1, 'Java Developer', '3127355');
+VALUES (3, 0, 3, 'Anastasia', 'Titova', 'Vassilievna', 3, 1, 'Java Developer', '3127355');
 
 -- Офис №4
 INSERT INTO Office (id, version, org_id,  name, address, phone, is_active)
@@ -64,4 +64,4 @@ VALUES (4, 0,  2, '2013-12-28', '414356');
 -- Работник №4
 INSERT INTO User (id, version, office_id, first_name, second_name, doc_user_id,
                   citizenship_id, position, phone)
-VALUES (4, 0, 2, 'Aleksandr', 'Kafidov', 4, 2, 'UI', '12126458367');
+VALUES (4, 0, 3, 'Aleksandr', 'Kafidov', 4, 2, 'UI', '12126458367');

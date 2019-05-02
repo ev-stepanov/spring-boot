@@ -2,7 +2,7 @@ package ru.bell.practice.springboot.view.userView;
 
 import javax.validation.constraints.NotNull;
 
-public class UserFilterView {
+public class UserInFilterView {
     @NotNull(message = "officeId cannot be null")
     private Long officeId;
 
@@ -12,6 +12,9 @@ public class UserFilterView {
     private String position;
     private Long citizenshipCode;
     private Long docCode;
+
+    public UserInFilterView() {
+    }
 
     public Long getOfficeId() {
         return officeId;
@@ -67,18 +70,5 @@ public class UserFilterView {
 
     public void setDocCode(Long docCode) {
         this.docCode = docCode;
-    }
-
-    @Override
-    public String toString() {
-        return "UserFilterView{" +
-                "officeId=" + officeId +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", position='" + position + '\'' +
-                ", citizenshipCode=" + citizenshipCode +
-                ", docCode=" + docCode +
-                '}';
     }
 }

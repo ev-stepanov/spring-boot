@@ -20,10 +20,13 @@ public class UserSaveView {
     private String phone;
     private Boolean isIdentified;
     private Long citizenshipCode;
-    private Long docName;
-    private Long docNumber;
+    private String docName;
+    private String docNumber;
     private Date docDate;
     private Long docCode;
+
+    public UserSaveView() {
+    }
 
     public Long getOfficeId() {
         return officeId;
@@ -89,19 +92,19 @@ public class UserSaveView {
         this.citizenshipCode = citizenshipCode;
     }
 
-    public Long getDocName() {
+    public String getDocName() {
         return docName;
     }
 
-    public void setDocName(Long docName) {
+    public void setDocName(String docName) {
         this.docName = docName;
     }
 
-    public Long getDocNumber() {
+    public String getDocNumber() {
         return docNumber;
     }
 
-    public void setDocNumber(Long docNumber) {
+    public void setDocNumber(String docNumber) {
         this.docNumber = docNumber;
     }
 
@@ -119,23 +122,5 @@ public class UserSaveView {
 
     public void setDocCode(Long docCode) {
         this.docCode = docCode;
-    }
-
-    @Override
-    public String toString() {
-        return "UserSaveView{" +
-                "officeId=" + officeId +
-                ", firstName='" + firstName + '\'' +
-                ", position='" + position + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isIdentified=" + isIdentified +
-                ", citizenshipCode=" + citizenshipCode +
-                ", docName=" + docName +
-                ", docNumber=" + docNumber +
-                ", docDate=" + docDate +
-                ", docCode=" + docCode +
-                '}';
     }
 }

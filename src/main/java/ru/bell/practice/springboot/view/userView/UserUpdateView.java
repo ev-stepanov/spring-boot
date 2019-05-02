@@ -21,9 +21,12 @@ public class UserUpdateView {
     private Boolean isIdentified;
     private Long officeId;
     private Long citizenshipCode;
-    private Long docName;
-    private Long docNumber;
+    private String docName;
+    private String docNumber;
     private Date docDate;
+
+    public UserUpdateView() {
+    }
 
     public Long getId() {
         return id;
@@ -97,19 +100,19 @@ public class UserUpdateView {
         this.citizenshipCode = citizenshipCode;
     }
 
-    public Long getDocName() {
+    public String getDocName() {
         return docName;
     }
 
-    public void setDocName(Long docName) {
+    public void setDocName(String docName) {
         this.docName = docName;
     }
 
-    public Long getDocNumber() {
+    public String getDocNumber() {
         return docNumber;
     }
 
-    public void setDocNumber(Long docNumber) {
+    public void setDocNumber(String docNumber) {
         this.docNumber = docNumber;
     }
 
@@ -119,23 +122,5 @@ public class UserUpdateView {
 
     public void setDocDate(Date docDate) {
         this.docDate = docDate;
-    }
-
-    @Override
-    public String toString() {
-        return "UserUpdateView{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", position='" + position + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isIdentified=" + isIdentified +
-                ", officeId=" + officeId +
-                ", citizenshipCode=" + citizenshipCode +
-                ", docName=" + docName +
-                ", docNumber=" + docNumber +
-                ", docDate=" + docDate +
-                '}';
     }
 }

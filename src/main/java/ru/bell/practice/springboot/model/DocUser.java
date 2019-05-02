@@ -66,6 +66,14 @@ public class DocUser {
         this.docNumber = docNumber;
     }
 
+    public DocType getDocType() {
+        return docType;
+    }
+
+    public void setDocType(DocType docType) {
+        this.docType = docType;
+    }
+
     @Override
     public String toString() {
         return "DocUser{" +

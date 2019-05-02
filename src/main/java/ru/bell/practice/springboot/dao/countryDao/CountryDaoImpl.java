@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -39,5 +40,22 @@ public class CountryDaoImpl implements CountryDao {
         criteriaQuery.select(country);
         TypedQuery<Country> query = em.createQuery(criteriaQuery);
         return query.getResultList();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Country getByCode(Long code) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Country> criteriaQuery = criteriaBuilder.createQuery(Country.class);
+        Root<Country> countryRoot = criteriaQuery.from(Country.class);
+
+        Predicate predicate = criteriaBuilder.equal(countryRoot.get("code"), code);
+
+        criteriaQuery.select(countryRoot).where(predicate);
+        TypedQuery<Country> query = em.createQuery(criteriaQuery);
+
+        return query.getSingleResult();
     }
 }

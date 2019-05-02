@@ -3,19 +3,14 @@ package ru.bell.practice.springboot.view.userView;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserView {
+public class UserOutFilterView {
     private Long id;
     private String firstName;
     private String secondName;
     private String middleName;
     private String position;
-    private String phone;
-    private Boolean isIdentified;
-    private Long officeId;
-    private Long citizenshipId;
-    private Long docUserId;
 
-    public UserView() {
+    public UserOutFilterView() {
     }
 
     public Long getId() {
@@ -56,45 +51,5 @@ public class UserView {
 
     public void setPosition(String position) {
         this.position = position;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Boolean getIdentified() {
-        return isIdentified;
-    }
-
-    public void setIdentified(Boolean identified) {
-        isIdentified = identified;
-    }
-
-    public Long getOfficeId() {
-        return officeId;
-    }
-
-    public void setOfficeId(Long officeId) {
-        this.officeId = officeId;
-    }
-
-    public Long getCitizenshipId() {
-        return citizenshipId;
-    }
-
-    public void setCitizenshipId(Long citizenshipId) {
-        this.citizenshipId = citizenshipId;
-    }
-
-    public Long getDocUserId() {
-        return docUserId;
-    }
-
-    public void setDocUserId(Long docUserId) {
-        this.docUserId = docUserId;
     }
 }

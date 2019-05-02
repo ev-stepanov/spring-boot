@@ -8,23 +8,23 @@ public class SuccessResponseView {
     /**
      * Поле, содержащее информацию об успешном выполнении операции
      */
-    private Boolean success;
+    private String result;
 
     /**
      * Конструктор
      *
-     * @param success успешность операции
+     * @param result успешность операции
      */
-    public SuccessResponseView(Boolean success) {
-        this.success = success;
+    public SuccessResponseView(String result) {
+        this.result = result;
     }
 
-    public Boolean getSuccess() {
-        return success;
+    public String getResult() {
+        return result;
     }
 
-    public void setSuccess(Boolean success) {
-        this.success = success;
+    public void setResult(String result) {
+        this.result = result;
     }
 
 }

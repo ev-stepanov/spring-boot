@@ -20,7 +20,7 @@ public class DocType {
      * Код документа
      */
     @Column(name = "doc_code")
-    private String code;
+    private Long code;
 
     /**
      * Наименование документа
@@ -32,7 +32,7 @@ public class DocType {
 
     }
 
-    public DocType(String code, String name) {
+    public DocType(Long code, String name) {
         this.code = code;
         this.name = name;
         this.version = 0;
@@ -42,7 +42,7 @@ public class DocType {
         return id;
     }
 
-    public String getCode() {
+    public Long getCode() {
         return code;
     }
 
@@ -50,7 +50,7 @@ public class DocType {
         return name;
     }
 
-    public void setCode(String code) {
+    public void setCode(Long code) {
         this.code = code;
     }
 

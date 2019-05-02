@@ -15,4 +15,12 @@ public interface CountryDao {
      * @return список стран и их кодов
      */
     List<Country> list();
+
+    /**
+     * Возвращает гражданство по коду.
+     *
+     * @param code код гражданства
+     * @return гражданство
+     */
+    Country getByCode(Long code);
 }

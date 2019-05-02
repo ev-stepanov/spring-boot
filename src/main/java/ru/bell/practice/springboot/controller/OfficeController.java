@@ -3,12 +3,10 @@ package ru.bell.practice.springboot.controller;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.bell.practice.springboot.response.view.DataResponseView;
-import ru.bell.practice.springboot.response.view.SuccessResponseView;
 import ru.bell.practice.springboot.service.officeService.OfficeService;
-import ru.bell.practice.springboot.view.officeView.OfficeInFilterView;
-import ru.bell.practice.springboot.view.officeView.OfficeSaveView;
-import ru.bell.practice.springboot.view.officeView.OfficeUpdateView;
+import ru.bell.practice.springboot.view.officeView.*;
+
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -39,8 +37,8 @@ public class OfficeController {
      */
     @ApiOperation(value = "Get a list of all organizations by id organization", httpMethod = "POST")
     @PostMapping("/list")
-    public DataResponseView getListOfficesByFilter (@RequestBody OfficeInFilterView officeInFilterView) {
-        return new DataResponseView(officeService.list(officeInFilterView));
+    public List<OfficeOutFilterView> getListOfficesByFilter (@RequestBody OfficeInFilterView officeInFilterView) {
+        return officeService.list(officeInFilterView);
     }
 
     /**
@@ -51,33 +49,29 @@ public class OfficeController {
      */
     @ApiOperation(value = "Get the office by id", httpMethod = "GET")
     @GetMapping("/{id:[\\d]+}")
-    public DataResponseView getOfficeById (@PathVariable("id") Long id) {
-        return new DataResponseView(officeService.getById(id));
+    public OfficeView getOfficeById (@PathVariable("id") Long id) {
+        return officeService.getById(id);
     }
 
     /**
      * Обнавляет сведения об офисе.
      *
      * @param officeUpdateView - содержит сведения об обновлении
-     * @return успешность операции
      */
     @ApiOperation(value = "Update of information about the office", httpMethod = "POST")
     @PostMapping("/update")
-    public SuccessResponseView update(@RequestBody OfficeUpdateView officeUpdateView) {
+    public void update(@RequestBody OfficeUpdateView officeUpdateView) {
         officeService.update(officeUpdateView);
-        return new SuccessResponseView(true);
     }
 
     /**
      * Сохраняет сведения об новом офисе.
      *
      * @param officeSaveView - содержит сведения о новом офис
-     * @return успешность операции
      */
     @ApiOperation(value = "Save of information about the office", httpMethod = "POST")
     @PostMapping("/save")
-    public SuccessResponseView save(@RequestBody OfficeSaveView officeSaveView) {
+    public void save(@RequestBody OfficeSaveView officeSaveView) {
         officeService.save(officeSaveView);
-        return new SuccessResponseView(true);
     }
 }

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -37,8 +38,38 @@ public class DocDaoImpl implements DocDao {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<DocType> criteriaQuery = criteriaBuilder.createQuery(DocType.class);
         Root<DocType> docType = criteriaQuery.from(DocType.class);
+
         criteriaQuery.select(docType);
         TypedQuery<DocType> query = em.createQuery(criteriaQuery);
+
         return query.getResultList();
+    }
+
+    @Override
+    public DocType getByName(String docName) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<DocType> criteriaQuery = criteriaBuilder.createQuery(DocType.class);
+        Root<DocType> docTypeRoot = criteriaQuery.from(DocType.class);
+
+        Predicate predicate = criteriaBuilder.equal(docTypeRoot.get("name"), docName);
+
+        criteriaQuery.select(docTypeRoot).where(predicate);
+        TypedQuery<DocType> query = em.createQuery(criteriaQuery);
+
+        return query.getSingleResult();
+    }
+
+    @Override
+    public DocType getByCode(Long docCode) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<DocType> criteriaQuery = criteriaBuilder.createQuery(DocType.class);
+        Root<DocType> docTypeRoot = criteriaQuery.from(DocType.class);
+
+        Predicate predicate = criteriaBuilder.equal(docTypeRoot.get("code"), docCode);
+
+        criteriaQuery.select(docTypeRoot).where(predicate);
+        TypedQuery<DocType> query = em.createQuery(criteriaQuery);
+
+        return query.getSingleResult();
     }
 }

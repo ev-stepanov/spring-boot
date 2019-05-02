@@ -2,6 +2,7 @@ package ru.bell.practice.springboot.service.officeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bell.practice.springboot.dao.officeDao.OfficeDao;
 import ru.bell.practice.springboot.dao.organizationDao.OrganizationDao;
@@ -99,7 +100,7 @@ public class OfficeServiceImpl implements OfficeService {
             officeById.setActive(officeUpdateView.getActive());
         }
 
-        officeDao.save(officeById);
+        officeDao.update(officeById);
     }
 
     /**
