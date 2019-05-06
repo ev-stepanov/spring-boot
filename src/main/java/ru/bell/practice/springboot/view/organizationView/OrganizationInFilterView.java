@@ -1,12 +1,20 @@
 package ru.bell.practice.springboot.view.organizationView;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class OrganizationInFilterView {
 
-    @NotNull(message = "name cannot be null")
+    @NotNull
+    @Size(max = 50)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{0,50}")
     private String name;
+
+    @Size(max = 10)
+    @Pattern(regexp = "[0-9]{1,10}")
     private String inn;
+
     private Boolean isActive;
 
     public OrganizationInFilterView() {

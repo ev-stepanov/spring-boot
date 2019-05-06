@@ -1,12 +1,15 @@
 package ru.bell.practice.springboot.service.officeService;
 
+import org.springframework.validation.annotation.Validated;
 import ru.bell.practice.springboot.view.officeView.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
  * Интерфейс сервиса для работы с офисами
  */
+@Validated
 public interface OfficeService {
 
     /**
@@ -15,7 +18,7 @@ public interface OfficeService {
      * @param officeInFilterView - фильтр
      * @return отфильтрованный список
      */
-    List<OfficeOutFilterView> list(OfficeInFilterView officeInFilterView);
+    List<OfficeOutFilterView> list(@Valid OfficeInFilterView officeInFilterView);
 
     /**
      * Возвращает офис с указанным id.
@@ -30,12 +33,12 @@ public interface OfficeService {
      *
      * @param officeUpdateView - содержит обновляемые данные об офисе
      */
-    void update(OfficeUpdateView officeUpdateView);
+    void update(@Valid OfficeUpdateView officeUpdateView);
 
     /**
      * Сохраняет данные о новом офисе.
      *
      * @param officeSaveView - содержит данные о новом офисе
      */
-    void save(OfficeSaveView officeSaveView);
+    void save(@Valid OfficeSaveView officeSaveView);
 }

@@ -1,6 +1,7 @@
 package ru.bell.practice.springboot.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  *Пользователь
@@ -161,5 +162,45 @@ public class User {
 
     public void setDocUser(DocUser docUser) {
         this.docUser = docUser;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id) &&
+                Objects.equals(version, user.version) &&
+                firstName.equals(user.firstName) &&
+                Objects.equals(secondName, user.secondName) &&
+                Objects.equals(middleName, user.middleName) &&
+                Objects.equals(position, user.position) &&
+                Objects.equals(phone, user.phone) &&
+                Objects.equals(isIdentified, user.isIdentified) &&
+                Objects.equals(office, user.office) &&
+                Objects.equals(citizenship, user.citizenship) &&
+                Objects.equals(docUser, user.docUser);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, version, firstName, secondName, middleName, position, phone, isIdentified, office, citizenship, docUser);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", version=" + version +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", position='" + position + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isIdentified=" + isIdentified +
+                ", office=" + office +
+                ", citizenship=" + citizenship +
+                ", docUser=" + docUser +
+                '}';
     }
 }

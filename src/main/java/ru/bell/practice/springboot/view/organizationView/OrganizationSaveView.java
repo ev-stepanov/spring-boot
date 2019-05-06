@@ -1,27 +1,41 @@
 package ru.bell.practice.springboot.view.organizationView;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class OrganizationSaveView {
 
-    @NotEmpty(message = "name cannot be null")
+    @NotNull
+    @Size(max = 50)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{1,50}")
     private String name;
 
-    @NotEmpty(message = "fullName cannot be null")
+    @NotNull
+    @Size(max = 255)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я0-9 ]{1,255}")
     private String fullName;
 
-    @NotEmpty(message = "inn cannot be null")
+    @NotNull
+    @Size(max = 10)
+    @Pattern(regexp = "[0-9]{1,10}")
     private String inn;
 
-    @NotEmpty(message = "kpp cannot be null")
+    @NotNull
+    @Size(max = 10)
+    @Pattern(regexp = "[0-9]{1,10}")
     private String kpp;
 
-    @NotEmpty(message = "address cannot be null")
+    @NotNull
+    @Size(max = 255)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я0-9 ,./-]{1,255}")
     private String address;
 
+    @Size(min = 7, max = 12)
+    @Pattern(regexp = "(\\+?)\\d{7,12}")
     private String phone;
 
-    private Boolean isActive;
+    private Boolean isActive = true;
 
     public OrganizationSaveView() {
     }

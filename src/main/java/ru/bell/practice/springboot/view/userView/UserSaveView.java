@@ -2,25 +2,45 @@ package ru.bell.practice.springboot.view.userView;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class UserSaveView {
 
-    @NotNull(message = "officeId cannot be null")
+    @NotNull
     private Long officeId;
 
-    @NotEmpty(message = "first name cannot be empty")
+    @NotNull
+    @Size(max = 50)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{1,50}")
     private String firstName;
 
-    @NotEmpty(message = "position cannot be empty")
+    @NotNull
+    @Size(max = 100)
+    @Pattern(regexp = "[A-Za-zА-Яа-я0-9 ,-]{1,100}")
     private String position;
 
+    @Size(max = 50)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{1,50}")
     private String secondName;
+
+    @Size(max = 50)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{1,50}")
     private String middleName;
+
+    @Size(min = 7, max = 12)
+    @Pattern(regexp = "(\\+?)\\d{7,12}")
     private String phone;
     private Boolean isIdentified;
     private Long citizenshipCode;
+
+    @Size(max = 50)
+    @Pattern(regexp = "[A-Za-zА-Яа-я0-9 ,-]{1,50}")
     private String docName;
+
+    @Size(max = 20)
+    @Pattern(regexp = "\\d{1,20}")
     private String docNumber;
     private Date docDate;
     private Long docCode;

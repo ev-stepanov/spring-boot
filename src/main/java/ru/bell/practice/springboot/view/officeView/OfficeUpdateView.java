@@ -1,19 +1,26 @@
 package ru.bell.practice.springboot.view.officeView;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class OfficeUpdateView {
 
-    @NotNull(message = "id cannot be null.")
+    @NotNull
     private Long id;
 
-    @NotEmpty(message = "name cannot be empty.")
+    @NotNull
+    @Size(max = 50)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{1,50}")
     private String name;
 
-    @NotEmpty(message = "address cannot be empty.")
+    @NotNull
+    @Size(max = 255)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я0-9 ,./-]{1,255}")
     private String address;
 
+    @Size(min = 7, max = 12)
+    @Pattern(regexp = "(\\+?)\\d{7,12}")
     private String phone;
 
     private Boolean isActive = true;

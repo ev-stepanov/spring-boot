@@ -1,13 +1,19 @@
 package ru.bell.practice.springboot.view.officeView;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class OfficeInFilterView {
-    @NotNull(message = "orgId cannot be null")
+    @NotNull
     private Long orgId;
 
+    @Size(max = 50)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{1,50}")
     private String name;
 
+    @Size(min = 7, max = 12)
+    @Pattern(regexp = "(\\+?)\\d{7,12}")
     private String phone;
 
     private Boolean isActive;

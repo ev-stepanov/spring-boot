@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Интерфейс DAO для работы с организациями
  */
+
 public interface OrganizationDao {
 
     /**

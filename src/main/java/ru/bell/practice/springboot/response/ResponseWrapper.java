@@ -13,7 +13,7 @@ import ru.bell.practice.springboot.response.view.DataResponseView;
 import ru.bell.practice.springboot.response.view.ErrorResponseView;
 import ru.bell.practice.springboot.response.view.SuccessResponseView;
 
-import java.lang.reflect.AnnotatedElement;
+import javax.validation.ValidationException;
 
 @RestControllerAdvice
 public class ResponseWrapper implements ResponseBodyAdvice {
@@ -24,11 +24,11 @@ public class ResponseWrapper implements ResponseBodyAdvice {
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if (methodParameter.getParameterType() == void.class) {
+        if (methodParameter.getParameterType().equals(void.class)) {
             return new SuccessResponseView("success");
         }
 
-        if (methodParameter.getParameterType() == ErrorResponseView.class) {
+        if (methodParameter.getParameterType().equals(ErrorResponseView.class)) {
             return o;
         }
 
@@ -41,18 +41,23 @@ public class ResponseWrapper implements ResponseBodyAdvice {
      * @param e обрабатываемое исключение
      * @return view с сообщением об ошбике
      */
-    @ExceptionHandler({WrongRequestException.class, RecordNotFoundException.class})
-    public ErrorResponseView exceptionHandler(RuntimeException e){
-        return new ErrorResponseView(e.getMessage());
+    @ExceptionHandler(ValidationException.class)
+    public ErrorResponseView dataValidationException(RuntimeException e){
+        return new ErrorResponseView("Invalid input");
     }
 
-    /**
-     * Формирует сообщение об ошибке
-     * @param e исключение
-     * @return view с сообщением лб ошибке
-     */
+    @ExceptionHandler(RecordNotFoundException.class)
+    public ErrorResponseView dataSearchException (RuntimeException e) {
+        return new ErrorResponseView("At your request, nothing found");
+    }
+
+    @ExceptionHandler(WrongRequestException.class)
+    public ErrorResponseView saveException (RuntimeException e) {
+        return new ErrorResponseView("Failed to update or save data");
+    }
+
     @ExceptionHandler(Exception.class)
-    public ErrorResponseView unpredictableExceptionHandler(Exception e){
-        return new ErrorResponseView(e.getMessage());
+    public ErrorResponseView exceptionHandler(Exception e){
+        return new ErrorResponseView("Error");
     }
 }

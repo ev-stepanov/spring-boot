@@ -1,15 +1,29 @@
 package ru.bell.practice.springboot.view.userView;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class UserInFilterView {
-    @NotNull(message = "officeId cannot be null")
+    @NotNull
     private Long officeId;
 
+    @Size(max = 50)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{1,50}")
     private String firstName;
+
+    @Size(max = 50)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{1,50}")
     private String secondName;
+
+    @Size(max = 50)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{1,50}")
     private String middleName;
+
+    @Size(max = 100)
+    @Pattern(regexp = "[a-zA-Zа-яА-Я \\d*]{1,100}")
     private String position;
+
     private Long citizenshipCode;
     private Long docCode;
 
