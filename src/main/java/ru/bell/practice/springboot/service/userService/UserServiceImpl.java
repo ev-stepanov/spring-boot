@@ -48,7 +48,6 @@ public class UserServiceImpl implements  UserService {
         this.countryDao = countryDao;
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public List<UserOutFilterView> list(UserInFilterView userInFilterView) {
@@ -84,7 +83,10 @@ public class UserServiceImpl implements  UserService {
         if (user == null) {
             throw new RecordNotFoundException();
         }
-        return mapperFacade.map(user, UserView.class);
+        UserView view = mapperFacade.map(user, UserView.class);
+        settingReferenceParameters(user, view);
+
+        return view;
     }
 
     /**
@@ -136,11 +138,13 @@ public class UserServiceImpl implements  UserService {
     }
 
     private void setParamForUpdate(UserUpdateView userUpdateView, User user) {
-        Office officeDaoById = officeDao.getById(userUpdateView.getOfficeId());
-        if (officeDaoById == null) {
-            throw new WrongRequestException();
+        if (userUpdateView.getOfficeId() != null) {
+            Office officeDaoById = officeDao.getById(userUpdateView.getOfficeId());
+            if (officeDaoById == null) {
+                throw new WrongRequestException();
+            }
+            user.setOffice(officeDaoById);
         }
-        user.setOffice(officeDaoById);
         user.setFirstName(userUpdateView.getFirstName());
         user.setPosition(userUpdateView.getPosition());
 
@@ -167,6 +171,20 @@ public class UserServiceImpl implements  UserService {
         }
         if (userUpdateView.getIdentified() != null) {
             user.setIdentified(userUpdateView.getIdentified());
+        }
+    }
+
+    private void settingReferenceParameters(User user, UserView view) {
+        if (user.getCitizenship() != null) {
+            view.setCitizenshipCode(user.getCitizenship().getCode());
+            view.setCitizenshipName(user.getCitizenship().getName());
+        }
+        if (user.getDocUser() != null) {
+            view.setDocNumber(user.getDocUser().getDocNumber());
+            view.setDocDate(user.getDocUser().getDocDate());
+            if (user.getDocUser().getDocType() != null) {
+                view.setDocCode(user.getDocUser().getDocType().getCode());
+            }
         }
     }
 }

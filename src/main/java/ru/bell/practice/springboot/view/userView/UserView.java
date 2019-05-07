@@ -2,6 +2,8 @@ package ru.bell.practice.springboot.view.userView;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.Date;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserView {
     private Long id;
@@ -12,8 +14,11 @@ public class UserView {
     private String phone;
     private Boolean isIdentified;
     private Long officeId;
-    private Long citizenshipId;
-    private Long docUserId;
+    private Long citizenshipCode;
+    private String citizenshipName;
+    private String docNumber;
+    private Date docDate;
+    private Long docCode;
 
     public UserView() {
     }
@@ -82,19 +87,43 @@ public class UserView {
         this.officeId = officeId;
     }
 
-    public Long getCitizenshipId() {
-        return citizenshipId;
+    public Long getCitizenshipCode() {
+        return citizenshipCode;
     }
 
-    public void setCitizenshipId(Long citizenshipId) {
-        this.citizenshipId = citizenshipId;
+    public void setCitizenshipCode(Long citizenshipCode) {
+        this.citizenshipCode = citizenshipCode;
     }
 
-    public Long getDocUserId() {
-        return docUserId;
+    public String getCitizenshipName() {
+        return citizenshipName;
     }
 
-    public void setDocUserId(Long docUserId) {
-        this.docUserId = docUserId;
+    public void setCitizenshipName(String citizenshipName) {
+        this.citizenshipName = citizenshipName;
+    }
+
+    public String getDocNumber() {
+        return docNumber;
+    }
+
+    public void setDocNumber(String docNumber) {
+        this.docNumber = docNumber;
+    }
+
+    public Date getDocDate() {
+        return docDate;
+    }
+
+    public void setDocDate(Date docDate) {
+        this.docDate = docDate;
+    }
+
+    public Long getDocCode() {
+        return docCode;
+    }
+
+    public void setDocCode(Long docCode) {
+        this.docCode = docCode;
     }
 }

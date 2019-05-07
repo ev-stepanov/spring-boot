@@ -20,8 +20,8 @@ VALUES (1, 0, 1, '2015-09-28', '404426');
 
 -- Работник №1
 INSERT INTO User (id, version, office_id, first_name, second_name, middle_name, doc_user_id,
-                  citizenship_id, position, phone)
-VALUES (1, 0, 1, 'Ivan', 'Ivanov', 'Ivanovich', 1, 1, 'Manager', '12125463456');
+                  citizenship_id, position, phone, is_identified)
+VALUES (1, 0, 1, 'Ivan', 'Ivanov', 'Ivanovich', 1, 1, 'Manager', '12125463456', true);
 
 -- Офис №2
 INSERT INTO Office (id, version, org_id,  name, address, phone, is_active)
@@ -33,8 +33,8 @@ VALUES (2, 0,  1, '2016-07-18', '434141');
 
 -- Работник №2
 INSERT INTO User (id, version, office_id, first_name, second_name, middle_name, doc_user_id,
-                  citizenship_id, position, phone)
-VALUES (2, 0, 2, 'Max', 'Smirnov', 'Alekseevich', 2, 2, 'Consultant', '12125463456');
+                  citizenship_id, position, phone, is_identified)
+VALUES (2, 0, 2, 'Max', 'Smirnov', 'Alekseevich', 2, 2, 'Consultant', '12125463456', true);
 
 -- Организация №2
 INSERT INTO Organization (id, version, name,  full_name, inn, kpp, address, phone, is_active)
