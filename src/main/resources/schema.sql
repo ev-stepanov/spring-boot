@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS User (
 COMMENT ON TABLE User IS 'Пользователь';
 
 CREATE TABLE IF NOT EXISTS Doc_user (
-  id          BIGINT      NOT NULL  COMMENT 'Идентификатор ползователя' PRIMARY KEY ,
+  id          BIGINT      NOT NULL  COMMENT 'Идентификатор ползователя' PRIMARY KEY AUTO_INCREMENT,
   version     INTEGER     NOT NULL  COMMENT 'Служебное поле Hibernate',
   doc_id      BIGINT                COMMENT 'Код удостоверения',
   doc_date    DATE                  COMMENT 'Дата регистрации удостверения',
