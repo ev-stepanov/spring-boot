@@ -12,10 +12,13 @@ public interface OfficeDao {
     /**
      * Возвращает отфильтрованный список офисов.
      *
-     * @param office - фильтр списка офисов
+     * @param orgId ид организации
+     * @param name имя организации
+     * @param phone телефон
+     * @param isActive активность
      * @return отфильтрованный список
      */
-    List<Office> filter(Office office);
+    List<Office> filter(Long orgId, String name, String phone, Boolean isActive);
 
     /**
      * Возвращает офис с указанным идентификатором.

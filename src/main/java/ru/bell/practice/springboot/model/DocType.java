@@ -19,13 +19,13 @@ public class DocType {
     /**
      * Код документа
      */
-    @Column(name = "doc_code")
+    @Column(name = "doc_code", nullable = false)
     private Long code;
 
     /**
      * Наименование документа
      */
-    @Column(name = "doc_name")
+    @Column(name = "doc_name", length = 50, nullable = false)
     private String name;
 
     public DocType() {

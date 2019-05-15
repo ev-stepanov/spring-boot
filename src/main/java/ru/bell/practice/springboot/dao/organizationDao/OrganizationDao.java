@@ -13,10 +13,9 @@ public interface OrganizationDao {
     /**
      * Возвращает отфильтрованный список организаций.
      *
-     * @param organization фильтр списка организаций
      * @return отфильтрованный список
      */
-    List<Organization> filter(Organization organization);
+    List<Organization> filter(String name, String inn, Boolean isActive);
 
     /**
      * Возвращает организацию с указанным идентификатором.

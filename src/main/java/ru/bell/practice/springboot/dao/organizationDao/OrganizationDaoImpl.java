@@ -30,16 +30,16 @@ public class OrganizationDaoImpl implements  OrganizationDao {
      * {@inheritDoc}
      */
     @Override
-    public List<Organization> filter(Organization organization) {
+    public List<Organization> filter(String name, String inn, Boolean isActive) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = criteriaBuilder.createQuery(Organization.class);
         Root<Organization> organizationRoot = criteriaQuery.from(Organization.class);
-        Predicate predicate = criteriaBuilder.like(organizationRoot.get("name"), "%" + organization.getName() + "%");
-        if (organization.getInn() != null && !organization.getInn().isEmpty()) {
-            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(organizationRoot.get("inn"), organization.getInn()));
+        Predicate predicate = criteriaBuilder.equal(organizationRoot.get("name"), name);
+        if (inn != null) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(organizationRoot.get("inn"), inn));
         }
-        if (organization.getActive() != null) {
-            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(organizationRoot.get("isActive"), organization.getActive()));
+        if (isActive != null) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(organizationRoot.get("isActive"), isActive));
         }
         criteriaQuery.select(organizationRoot).where(predicate);
         TypedQuery<Organization> query = em.createQuery(criteriaQuery);

@@ -33,20 +33,20 @@ public class OfficeDaoImpl implements OfficeDao {
      * {@inheritDoc}
      */
     @Override
-    public List<Office> filter(Office office) {
+    public List<Office> filter(Long orgId, String name, String phone, Boolean isActive) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Office> criteriaQuery = criteriaBuilder.createQuery(Office.class);
         Root<Office> officeRoot = criteriaQuery.from(Office.class);
 
-        Predicate predicate = criteriaBuilder.equal(officeRoot.get("organization").get("id"), office.getOrganization().getId());
-        if (office.getName() != null) {
-            predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(officeRoot.get("name"), "%" + office.getName() + "%"));
+        Predicate predicate = criteriaBuilder.equal(officeRoot.get("organization").get("id"), orgId);
+        if (name != null) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(officeRoot.get("name"), name));
         }
-        if (office.getPhone() != null) {
-            predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(officeRoot.get("phone"), "%" + office.getPhone() + "%"));
+        if (phone != null) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(officeRoot.get("phone"), phone));
         }
-        if (office.getActive() != null) {
-            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(officeRoot.get("isActive"), office.getActive()));
+        if (isActive != null) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(officeRoot.get("isActive"), isActive));
         }
 
         criteriaQuery.select(officeRoot).where(predicate);

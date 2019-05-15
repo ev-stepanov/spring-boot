@@ -44,13 +44,8 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional(readOnly = true)
     public List<OfficeOutFilterView> list(OfficeInFilterView officeInFilterView) {
-        Office office = mapperFacade.map(officeInFilterView, Office.class);
-        Organization organization = organizationDao.getById(officeInFilterView.getOrgId());
-        if (organization == null) {
-            throw new RecordNotFoundException();
-        }
-        office.setOrganization(organization);
-        List<Office> offices = officeDao.filter(office);
+        List<Office> offices = officeDao.filter(officeInFilterView.getOrgId(),
+                officeInFilterView.getName(), officeInFilterView.getPhone(), officeInFilterView.getActive());
         return mapperFacade.mapAsList(offices, OfficeOutFilterView.class);
     }
 

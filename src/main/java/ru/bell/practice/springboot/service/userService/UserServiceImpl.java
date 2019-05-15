@@ -9,7 +9,6 @@ import ru.bell.practice.springboot.dao.officeDao.OfficeDao;
 import ru.bell.practice.springboot.dao.userDao.UserDao;
 import ru.bell.practice.springboot.exception.RecordNotFoundException;
 import ru.bell.practice.springboot.exception.WrongRequestException;
-import ru.bell.practice.springboot.model.Country;
 import ru.bell.practice.springboot.model.DocUser;
 import ru.bell.practice.springboot.model.Office;
 import ru.bell.practice.springboot.model.User;
@@ -50,25 +49,9 @@ public class UserServiceImpl implements  UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<UserOutFilterView> list(UserInFilterView userInFilterView) {
-        User user = mapperFacade.map(userInFilterView, User.class);
-        Office office = officeDao.getById(userInFilterView.getOfficeId());
-        if (office == null) {
-            throw new RecordNotFoundException();
-        }
-
-        user.setOffice(office);
-
-        if (userInFilterView.getDocCode() != null) {
-            user.setDocUser(new DocUser());
-            user.getDocUser().setDocType(docDao.getByCode(userInFilterView.getDocCode()));
-        }
-        if (userInFilterView.getCitizenshipCode() != null) {
-            user.setCitizenship(new Country());
-            user.setCitizenship(countryDao.getByCode(userInFilterView.getCitizenshipCode()));
-        }
-
-        List<User> users = userDao.filter(user);
+    public List<UserOutFilterView> list(UserInFilterView view) {
+        List<User> users = userDao.filter(view.getOfficeId(), view.getFirstName(),view.getSecondName(),
+                view.getMiddleName(), view.getPosition(), view.getDocCode(), view.getCitizenshipCode());
 
         return mapperFacade.mapAsList(users, UserOutFilterView.class);
     }
@@ -84,7 +67,18 @@ public class UserServiceImpl implements  UserService {
             throw new RecordNotFoundException();
         }
         UserView view = mapperFacade.map(user, UserView.class);
-        settingReferenceParameters(user, view);
+
+        if (user.getCitizenship() != null) {
+            view.setCitizenshipCode(user.getCitizenship().getCode());
+            view.setCitizenshipName(user.getCitizenship().getName());
+        }
+        if (user.getDocUser() != null) {
+            view.setDocNumber(user.getDocUser().getDocNumber());
+            view.setDocDate(user.getDocUser().getDocDate());
+            if (user.getDocUser().getDocType() != null) {
+                view.setDocCode(user.getDocUser().getDocType().getCode());
+            }
+        }
 
         return view;
     }
@@ -99,7 +93,41 @@ public class UserServiceImpl implements  UserService {
         if (user == null) {
             throw new WrongRequestException();
         }
-        setParamForUpdate(userUpdateView, user);
+
+        if (userUpdateView.getOfficeId() != null) {
+            Office officeDaoById = officeDao.getById(userUpdateView.getOfficeId());
+            if (officeDaoById == null) {
+                throw new WrongRequestException();
+            }
+            user.setOffice(officeDaoById);
+        }
+        user.setFirstName(userUpdateView.getFirstName());
+        user.setPosition(userUpdateView.getPosition());
+
+        if (userUpdateView.getSecondName() != null) {
+            user.setSecondName(userUpdateView.getSecondName());
+        }
+        if (userUpdateView.getMiddleName() != null) {
+            user.setMiddleName(userUpdateView.getMiddleName());
+        }
+        if (userUpdateView.getPhone() != null) {
+            user.setPhone(userUpdateView.getPhone());
+        }
+        if (userUpdateView.getDocName() != null) {
+            user.getDocUser().setDocType(docDao.getByName(userUpdateView.getDocName()));
+        }
+        if (userUpdateView.getDocName() != null) {
+            user.getDocUser().setDocNumber(userUpdateView.getDocNumber());
+        }
+        if (userUpdateView.getDocName() != null) {
+            user.getDocUser().setDocDate(userUpdateView.getDocDate());
+        }
+        if (userUpdateView.getCitizenshipCode() != null) {
+            user.setCitizenship(countryDao.getByCode(userUpdateView.getCitizenshipCode()));
+        }
+        if (userUpdateView.getIdentified() != null) {
+            user.setIdentified(userUpdateView.getIdentified());
+        }
         userDao.update(user);
     }
 
@@ -135,56 +163,5 @@ public class UserServiceImpl implements  UserService {
             docUser.setDocDate(userSaveView.getDocDate());
         }
         return docUser;
-    }
-
-    private void setParamForUpdate(UserUpdateView userUpdateView, User user) {
-        if (userUpdateView.getOfficeId() != null) {
-            Office officeDaoById = officeDao.getById(userUpdateView.getOfficeId());
-            if (officeDaoById == null) {
-                throw new WrongRequestException();
-            }
-            user.setOffice(officeDaoById);
-        }
-        user.setFirstName(userUpdateView.getFirstName());
-        user.setPosition(userUpdateView.getPosition());
-
-        if (userUpdateView.getSecondName() != null) {
-            user.setSecondName(userUpdateView.getSecondName());
-        }
-        if (userUpdateView.getMiddleName() != null) {
-            user.setMiddleName(userUpdateView.getMiddleName());
-        }
-        if (userUpdateView.getPhone() != null) {
-            user.setPhone(userUpdateView.getPhone());
-        }
-        if (userUpdateView.getDocName() != null) {
-            user.getDocUser().setDocType(docDao.getByName(userUpdateView.getDocName()));
-        }
-        if (userUpdateView.getDocName() != null) {
-            user.getDocUser().setDocNumber(userUpdateView.getDocNumber());
-        }
-        if (userUpdateView.getDocName() != null) {
-            user.getDocUser().setDocDate(userUpdateView.getDocDate());
-        }
-        if (userUpdateView.getCitizenshipCode() != null) {
-            user.setCitizenship(countryDao.getByCode(userUpdateView.getCitizenshipCode()));
-        }
-        if (userUpdateView.getIdentified() != null) {
-            user.setIdentified(userUpdateView.getIdentified());
-        }
-    }
-
-    private void settingReferenceParameters(User user, UserView view) {
-        if (user.getCitizenship() != null) {
-            view.setCitizenshipCode(user.getCitizenship().getCode());
-            view.setCitizenshipName(user.getCitizenship().getName());
-        }
-        if (user.getDocUser() != null) {
-            view.setDocNumber(user.getDocUser().getDocNumber());
-            view.setDocDate(user.getDocUser().getDocDate());
-            if (user.getDocUser().getDocType() != null) {
-                view.setDocCode(user.getDocUser().getDocType().getCode());
-            }
-        }
     }
 }

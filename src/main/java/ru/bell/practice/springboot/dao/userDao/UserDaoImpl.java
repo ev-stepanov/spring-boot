@@ -33,41 +33,42 @@ public class UserDaoImpl implements UserDao {
      * {@inheritDoc}
      */
     @Override
-    public List<User> filter(User user) {
+    public List<User> filter(Long officeId, String firstName, String secondName, String middleName,
+                             String position, Long docCode, Long citizenshipCode) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
         Root<User> userRoot = criteriaQuery.from(User.class);
 
-        Predicate predicate = criteriaBuilder.equal(userRoot.get("office").get("id"), user.getOffice().getId());
+        Predicate predicate = criteriaBuilder.equal(userRoot.get("office").get("id"), officeId);
 
-        if (user.getFirstName() != null) {
-            predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(
-                    userRoot.get("firstName"), "%" + user.getFirstName() + "%"));
-        }
-
-        if (user.getSecondName() != null) {
-            predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(
-                    userRoot.get("secondName"), "%" + user.getSecondName() + "%"));
-        }
-
-        if (user.getMiddleName() != null) {
-            predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(
-                    userRoot.get("middleName"), "%" + user.getMiddleName() + "%"));
-        }
-
-        if (user.getPosition() != null) {
-            predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(
-                    userRoot.get("position"), "%" + user.getPosition() + "%"));
-        }
-
-        if (user.getDocUser() != null) {
+        if (firstName != null) {
             predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(
-                    userRoot.get("docUser").get("docType").get("code"), user.getDocUser().getDocType().getCode()));
+                    userRoot.get("firstName"), firstName));
         }
 
-        if (user.getCitizenship() != null) {
+        if (secondName != null) {
             predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(
-                    userRoot.get("citizenship").get("code"), user.getCitizenship().getCode()));
+                    userRoot.get("secondName"), secondName));
+        }
+
+        if (middleName != null) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(
+                    userRoot.get("middleName"), middleName));
+        }
+
+        if (position != null) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(
+                    userRoot.get("position"), position));
+        }
+
+        if (docCode != null) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(
+                    userRoot.get("docUser").get("docType").get("code"), docCode));
+        }
+
+        if (citizenshipCode != null) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(
+                    userRoot.get("citizenship").get("code"), citizenshipCode));
         }
 
         criteriaQuery.select(userRoot).where(predicate);

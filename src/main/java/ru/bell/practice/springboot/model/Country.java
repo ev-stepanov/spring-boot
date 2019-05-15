@@ -19,13 +19,13 @@ public class Country {
     /**
      * Код гражданства
      */
-    @Column(name = "citizenship_code")
+    @Column(name = "citizenship_code", nullable = false)
     private Long code;
 
     /**
      * Гражданство
      */
-    @Column(name = "citizenship_name")
+    @Column(name = "citizenship_name", length = 50, nullable = false)
     private String name;
 
     public Country() {

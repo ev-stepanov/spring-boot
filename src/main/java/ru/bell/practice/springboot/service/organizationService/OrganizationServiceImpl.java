@@ -38,8 +38,8 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     @Transactional(readOnly = true)
     public List<OrganizationOutFilterView> list(OrganizationInFilterView organizationInFilterView) {
-        Organization organization = mapperFacade.map(organizationInFilterView, Organization.class);
-        List<Organization> organizations = organizationDao.filter(organization);
+        List<Organization> organizations = organizationDao.filter(
+                organizationInFilterView.getName(), organizationInFilterView.getInn(), organizationInFilterView.getActive());
 
         return mapperFacade.mapAsList(organizations, OrganizationOutFilterView.class);
     }

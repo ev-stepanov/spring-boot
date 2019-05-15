@@ -12,10 +12,10 @@ public interface UserDao {
     /**
      * Возвращает отфильтрованный список пользователей.
      *
-     * @param user фильтр списка организаций
      * @return отфильтрованный список
      */
-    List<User> filter(User user);
+    List<User> filter(Long officeId, String firstName, String secondName, String middleName,
+                      String position, Long docCode, Long citizenshipCode);
 
     /**
      * Возвращает пользователя с указанным идентификатором.
