@@ -15,17 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import ru.bell.practice.springboot.Application;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class})
@@ -63,7 +57,7 @@ public class UserControllerTest {
     @Test
     public void getListEmptyUsersByFilter() throws Exception {
         String jsonByFilter = "{\"officeId\": \"8\"}";
-        mockMvc.perform(post("/api/office/list").contentType(MediaType.APPLICATION_JSON_UTF8).content(jsonByFilter))
+        mockMvc.perform(post("/api/user/list").contentType(MediaType.APPLICATION_JSON_UTF8).content(jsonByFilter))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
@@ -75,7 +69,7 @@ public class UserControllerTest {
     public void getListUsersByAllParameters() throws Exception {
         String jsonByFilter = "{\"officeId\": \"2\", \"firstName\":\"Max\",\"secondName\":\"Smirnov\"," +
                 "\"middleName\":\"Alekseevich\", \"position\":\"Consultant\"}";
-        mockMvc.perform(post("/api/office/list").contentType(MediaType.APPLICATION_JSON_UTF8).content(jsonByFilter))
+        mockMvc.perform(post("/api/user/list").contentType(MediaType.APPLICATION_JSON_UTF8).content(jsonByFilter))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
@@ -137,7 +131,7 @@ public class UserControllerTest {
     }
     @Test
     public void successUpdate() throws Exception {
-        String jsonForUpdate = "{\"id\":1,\"firstName\":\"OLEG\",\"docDate\":\"2018-01-01\"," +
+        String jsonForUpdate = "{\"id\":1,\"firstName\":\"OLEG\",\"docDate\":\"2018-01-01T00:00:00.000+0000\"," +
                 "\"position\":\"developer\",\"docName\":\"Military ID\",\"citizenshipCode\":77}";
         mockMvc.perform(post("/api/user/update")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -163,16 +157,10 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.data.docName", is("Military ID")))
                 .andExpect(jsonPath("$.data.identified", is(true)));
 
-
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-        Date date = inputFormat.parse("2018-01-01");
-        String formattedDate = outputFormat.format(date);
-
         mockMvc.perform(get("/api/user/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
-                .andExpect(jsonPath("$.data.docDate", is(formattedDate)));
+                .andExpect(jsonPath("$.data.docDate", is("2018-01-01")));
     }
 }

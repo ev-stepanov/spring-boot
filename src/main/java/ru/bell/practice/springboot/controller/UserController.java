@@ -45,7 +45,7 @@ public class UserController {
      * @return пользователь с указанным id
      */
     @ApiOperation(value = "Get the user by id", httpMethod = "GET")
-    @GetMapping("/{id}")
+    @GetMapping("/{id:[\\d]+}")
     public UserView getUserById (@PathVariable("id") Long id) {
         return userService.getById(id);
     }
