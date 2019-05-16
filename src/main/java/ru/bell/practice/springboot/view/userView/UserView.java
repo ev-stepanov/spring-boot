@@ -2,6 +2,8 @@ package ru.bell.practice.springboot.view.userView;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -18,7 +20,7 @@ public class UserView {
     private String citizenshipName;
     private String docNumber;
     private Date docDate;
-    private Long docCode;
+    private String docName;
 
     public UserView() {
     }
@@ -119,11 +121,11 @@ public class UserView {
         this.docDate = docDate;
     }
 
-    public Long getDocCode() {
-        return docCode;
+    public String getDocName() {
+        return docName;
     }
 
-    public void setDocCode(Long docCode) {
-        this.docCode = docCode;
+    public void setDocName(String docName) {
+        this.docName = docName;
     }
 }

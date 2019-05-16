@@ -76,7 +76,7 @@ public class UserServiceImpl implements  UserService {
             view.setDocNumber(user.getDocUser().getDocNumber());
             view.setDocDate(user.getDocUser().getDocDate());
             if (user.getDocUser().getDocType() != null) {
-                view.setDocCode(user.getDocUser().getDocType().getCode());
+                view.setDocName(user.getDocUser().getDocType().getName());
             }
         }
 
@@ -116,10 +116,10 @@ public class UserServiceImpl implements  UserService {
         if (userUpdateView.getDocName() != null) {
             user.getDocUser().setDocType(docDao.getByName(userUpdateView.getDocName()));
         }
-        if (userUpdateView.getDocName() != null) {
+        if (userUpdateView.getDocNumber() != null) {
             user.getDocUser().setDocNumber(userUpdateView.getDocNumber());
         }
-        if (userUpdateView.getDocName() != null) {
+        if (userUpdateView.getDocDate() != null) {
             user.getDocUser().setDocDate(userUpdateView.getDocDate());
         }
         if (userUpdateView.getCitizenshipCode() != null) {

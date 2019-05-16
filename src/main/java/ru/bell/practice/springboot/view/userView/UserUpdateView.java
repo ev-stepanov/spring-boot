@@ -1,6 +1,5 @@
 package ru.bell.practice.springboot.view.userView;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -31,9 +30,6 @@ public class UserUpdateView {
     @Size(min = 7, max = 12)
     @Pattern(regexp = "(\\+?)\\d{7,12}")
     private String phone;
-    private Boolean isIdentified;
-    private Long officeId;
-    private Long citizenshipCode;
 
     @Size(max = 50)
     @Pattern(regexp = "[A-Za-zА-Яа-я0-9 ,-]{1,50}")
@@ -42,7 +38,11 @@ public class UserUpdateView {
     @Size(max = 20)
     @Pattern(regexp = "\\d{1,20}")
     private String docNumber;
+
     private Date docDate;
+    private Boolean isIdentified;
+    private Long officeId;
+    private Long citizenshipCode;
 
     public UserUpdateView() {
     }
