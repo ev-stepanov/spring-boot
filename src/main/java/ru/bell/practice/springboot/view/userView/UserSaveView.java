@@ -1,5 +1,7 @@
 package ru.bell.practice.springboot.view.userView;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -42,6 +44,8 @@ public class UserSaveView {
     @Size(max = 20)
     @Pattern(regexp = "\\d{1,20}")
     private String docNumber;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date docDate;
     private Long docCode;
 

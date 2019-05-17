@@ -24,6 +24,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/**
+ * Интеграционные тесты для OfficeController
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class})
 @WebAppConfiguration(value = "src/main/resources")
@@ -41,6 +44,10 @@ public class OfficeControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).dispatchOptions(true).build();
     }
 
+    /**
+     * Получить список офисов по ид организации
+     * @throws Exception
+     */
     @Test
     public void getListOfficesByFilter() throws Exception {
         String jsonByFilter = "{\"orgId\": \"1\"}";
@@ -58,6 +65,10 @@ public class OfficeControllerTest {
                 .andExpect(jsonPath("$.data[1].active", is(true)));
     }
 
+    /**
+     * Получить пустой список по ид организации
+     * @throws Exception
+     */
     @Test
     public void getListEmptyOfficesByFilter() throws Exception {
         String jsonByFilter = "{\"orgId\": \"8\"}";
@@ -69,6 +80,10 @@ public class OfficeControllerTest {
                 .andExpect(jsonPath("$.data", hasSize(0)));
     }
 
+    /**
+     * Получить список офисов по полному списку параметров
+     * @throws Exception
+     */
     @Test
     public void getListOfficesByAllParameters() throws Exception {
         String jsonByFilter = "{\"name\": \"Microsoft New York\", \"orgId\":\"1\", \"active\":true}";
@@ -83,6 +98,10 @@ public class OfficeControllerTest {
                 .andExpect(jsonPath("$.data[0].active", is(true)));
     }
 
+    /**
+     * Получить ошибку при неверном формате параметров
+     * @throws Exception
+     */
     @Test
     public void getErrorByFilter() throws Exception {
         String jsonByFilter = "{\"orgId\": \"Abc\"}";
@@ -93,6 +112,10 @@ public class OfficeControllerTest {
                 .andExpect(jsonPath("$.error", notNullValue()));
     }
 
+    /**
+     * Получить офис по ид
+     * @throws Exception
+     */
     @Test
     public void getOfficeById() throws Exception {
         mockMvc.perform(get("/api/office/1"))
@@ -107,6 +130,10 @@ public class OfficeControllerTest {
                 .andExpect(jsonPath("$.data.active", is(true)));
     }
 
+    /**
+     * Получить сообщение об ошибке при не существующем офисе
+     * @throws Exception
+     */
     @Test
     public void officeNotFoundById() throws Exception {
         mockMvc.perform(get("/api/office/10"))
@@ -116,6 +143,10 @@ public class OfficeControllerTest {
                 .andExpect(jsonPath("$.error", notNullValue()));
     }
 
+    /**
+     * Получить ошибку 404 при неверно-заданном url
+     * @throws Exception
+     */
     @Test
     public void getErrorById() throws Exception {
         mockMvc.perform(get("/api/office/a"))
@@ -123,6 +154,10 @@ public class OfficeControllerTest {
                 .andDo(print());
     }
 
+    /**
+     * Удачное обновленние данных офиса
+     * @throws Exception
+     */
     @Test
     public void successUpdate() throws Exception {
         String jsonForUpdate = "{\"id\":1,\"name\":\"NEW OFFICE\",\"address\":\"groove street\",\"phone\":\"88005553535\",\"active\":false}";
@@ -145,6 +180,10 @@ public class OfficeControllerTest {
                 .andExpect(jsonPath("$.data.active", is(false)));
     }
 
+    /**
+     * Неудачное обновленние данных офиса
+     * @throws Exception
+     */
     @Test
     public void failedUpdate() throws Exception {
         String jsonForUpdate = "{\"id\":10,\"name\":\"NEW OFFICE\",\"address\":\"groove street\",\"phone\":\"88005553535\",\"active\":false}";
@@ -156,6 +195,10 @@ public class OfficeControllerTest {
                 .andExpect(jsonPath("$.error", notNullValue()));
     }
 
+    /**
+     * Удачное сохранение данных офиса
+     * @throws Exception
+     */
     @Test
     public void successSave() throws Exception {
         String jsonForUpdate = "{\"orgId\":1,\"name\":\"NEW OFFICE\",\"address\":\"groove street\",\"phone\":\"+79085425081\",\"isActive\":true}";
@@ -178,6 +221,10 @@ public class OfficeControllerTest {
                 .andExpect(jsonPath("$.data.active", is(true)));
     }
 
+    /**
+     * Неудачное сохранение данных офиса
+     * @throws Exception
+     */
     @Test
     public void failedSave() throws Exception {
         String jsonForUpdate = "{\"orgId\":10,\"name\":\"@#$%\",\"phone\":\"911\"}";

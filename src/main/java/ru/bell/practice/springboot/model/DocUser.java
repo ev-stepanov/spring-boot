@@ -1,7 +1,5 @@
 package ru.bell.practice.springboot.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 

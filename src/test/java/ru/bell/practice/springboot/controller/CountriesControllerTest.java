@@ -24,6 +24,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Интеграционные тесты для CountriesController
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class})
 @WebAppConfiguration(value = "src/main/resources")
@@ -41,6 +44,10 @@ public class CountriesControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).dispatchOptions(true).build();
     }
 
+    /**
+     * Получить список гражданств
+     * @throws Exception
+     */
     @Test
     public void list() throws Exception {
         mockMvc.perform(get("/api/countries"))

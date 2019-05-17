@@ -2,9 +2,8 @@ package ru.bell.practice.springboot.view.userView;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.util.Date;
+import java.util.TimeZone;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserView {

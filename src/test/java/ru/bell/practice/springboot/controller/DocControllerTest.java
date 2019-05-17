@@ -20,6 +20,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/**
+ * Интеграционные тесты для DocController
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class})
 @WebAppConfiguration(value = "src/main/resources")
@@ -35,6 +38,10 @@ public class DocControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).dispatchOptions(true).build();
     }
 
+    /**
+     * Получить список документов
+     * @throws Exception
+     */
     @Test
     public void list() throws Exception {
         mockMvc.perform(get("/api/docs"))

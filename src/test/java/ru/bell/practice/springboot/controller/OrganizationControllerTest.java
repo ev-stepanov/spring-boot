@@ -21,6 +21,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * Интеграционные тесты для OrganizationController
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class})
 @WebAppConfiguration(value = "src/main/resources")
@@ -37,6 +40,10 @@ public class OrganizationControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).dispatchOptions(true).build();
     }
 
+    /**
+     * Получить список организаций по названию
+     * @throws Exception
+     */
     @Test
     public void getListOrganizationsByFilter() throws Exception {
         String jsonByFilter = "{\"name\": \"Microsoft\"}";
@@ -51,6 +58,10 @@ public class OrganizationControllerTest {
                 .andExpect(jsonPath("$.data[0].active", is(true)));
     }
 
+    /**
+     * Получить пустой список по названию организации
+     * @throws Exception
+     */
     @Test
     public void getListEmptyOrganizationsByFilter() throws Exception {
         String jsonByFilter = "{\"name\": \"Gazprom\"}";
@@ -62,6 +73,10 @@ public class OrganizationControllerTest {
                 .andExpect(jsonPath("$.data", hasSize(0)));
     }
 
+    /**
+     * Получить список организаций по полному списку параметров
+     * @throws Exception
+     */
     @Test
     public void getListOrganizationsByAllParameters() throws Exception {
         String jsonByFilter = "{\"name\": \"Microsoft\", \"inn\":\"6449013711\", \"active\":true}";
@@ -76,6 +91,10 @@ public class OrganizationControllerTest {
                 .andExpect(jsonPath("$.data[0].active", is(true)));
     }
 
+    /**
+     * Получить ошибку при неверном формате параметров
+     * @throws Exception
+     */
     @Test
     public void getErrorByFilter() throws Exception {
         String jsonByFilter = "{\"name\": \"!@#$%^&&*\"}";
@@ -86,6 +105,10 @@ public class OrganizationControllerTest {
                 .andExpect(jsonPath("$.error", notNullValue()));
     }
 
+    /**
+     * Получить организацию по ид
+     * @throws Exception
+     */
     @Test
     public void getListOrganizationById() throws Exception {
         mockMvc.perform(get("/api/organization/1"))
@@ -102,6 +125,10 @@ public class OrganizationControllerTest {
                 .andExpect(jsonPath("$.data.active", is(true)));
     }
 
+    /**
+     * Получить сообщение об ошибке при не существующей организации
+     * @throws Exception
+     */
     @Test
     public void organizationNotFoundById() throws Exception {
         mockMvc.perform(get("/api/organization/10"))
@@ -111,6 +138,10 @@ public class OrganizationControllerTest {
                 .andExpect(jsonPath("$.error", notNullValue()));
     }
 
+    /**
+     * Получить ошибку 404 при неверно-заданном url
+     * @throws Exception
+     */
     @Test
     public void getErrorById() throws Exception {
         mockMvc.perform(get("/api/organization/a"))
@@ -118,6 +149,10 @@ public class OrganizationControllerTest {
                 .andDo(print());
     }
 
+    /**
+     * Удачное обновленние данных организации
+     * @throws Exception
+     */
     @Test
     public void successUpdate() throws Exception {
         String jsonForUpdate = "{\"id\":1,\"name\":\"Nintendo 3\",\"fullName\":\"Nintendo Super New Version\"," +
@@ -143,6 +178,10 @@ public class OrganizationControllerTest {
                 .andExpect(jsonPath("$.data.active", is(false)));
     }
 
+    /**
+     * Неудачное обновленние данных организации
+     * @throws Exception
+     */
     @Test
     public void failedUpdate() throws Exception {
         String jsonForUpdate = "{\"id\":7,\"name\":\"Nintendo 3\",\"fullName\":\"Nintendo Super New Version\"," +
@@ -155,6 +194,10 @@ public class OrganizationControllerTest {
                 .andExpect(jsonPath("$.error", notNullValue()));
     }
 
+    /**
+     * Удачное сохранение данных организации
+     * @throws Exception
+     */
     @Test
     public void successSave() throws Exception {
         String jsonForUpdate = "{\"name\":\"Nintendo 3\",\"fullName\":\"Nintendo Super New Version\"," +
@@ -179,6 +222,10 @@ public class OrganizationControllerTest {
                 .andExpect(jsonPath("$.data.active", is(true)));
     }
 
+    /**
+     * Неудачное сохранение данных организации
+     * @throws Exception
+     */
     @Test
     public void failedSave() throws Exception {
         String jsonForUpdate = "{\"fullName\":\"Nintendo Super New Version\"," +
