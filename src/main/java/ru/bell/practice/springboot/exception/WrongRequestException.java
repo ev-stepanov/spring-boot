@@ -1,7 +1,7 @@
 package ru.bell.practice.springboot.exception;
 
 /**
- *  Исклчение генерируется в случае отсутствия обязательных полей или их некорректном значении в запросе.
+ *  Исключение генерируется в случае отсутствия обязательных полей или их некорректном значении в запросе.
  */
 public class WrongRequestException extends RuntimeException {
 
