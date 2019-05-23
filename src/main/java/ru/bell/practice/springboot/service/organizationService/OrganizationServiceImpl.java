@@ -53,7 +53,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         Organization organization = organizationDao.getById(id);
 
         if (organization == null) {
-            throw new RecordNotFoundException();
+            throw new RecordNotFoundException("Invalid organization ID");
         }
 
         return mapperFacade.map(organization, OrganizationView.class);
@@ -68,7 +68,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         Organization organizationByID = organizationDao.getById(organizationUpdateView.getId());
 
         if (organizationByID == null) {
-            throw new RecordNotFoundException();
+            throw new RecordNotFoundException("Invalid organization ID");
         }
 
         organizationByID.setName(organizationUpdateView.getName());

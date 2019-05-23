@@ -57,7 +57,7 @@ public class OfficeServiceImpl implements OfficeService {
     public OfficeView getById(Long id) {
         Office officeById = officeDao.getById(id);
         if (officeById == null) {
-            throw new RecordNotFoundException();
+            throw new RecordNotFoundException("Invalid office ID");
         }
 
         return mapperFacade.map(officeById, OfficeView.class);
@@ -71,7 +71,7 @@ public class OfficeServiceImpl implements OfficeService {
     public void update(OfficeUpdateView officeUpdateView) {
         Office office = officeDao.getById(officeUpdateView.getId());
         if (office == null) {
-            throw new WrongRequestException();
+            throw new WrongRequestException("Invalid office ID");
         }
         office.setName(officeUpdateView.getName());
         office.setAddress(officeUpdateView.getAddress());
@@ -93,7 +93,7 @@ public class OfficeServiceImpl implements OfficeService {
         Office office = mapperFacade.map(officeSaveView, Office.class);
         Organization organization = organizationDao.getById(officeSaveView.getOrgId());
         if (organization == null) {
-            throw new WrongRequestException();
+            throw new WrongRequestException("Organization ID not set correctly");
         }
         office.setOrganization(organization);
         officeDao.save(office);

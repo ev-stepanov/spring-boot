@@ -62,7 +62,7 @@ public class UserControllerTest {
     }
 
     /**
-     * Получить пустой список по ид офиса
+     * Получить пустой список по идентификатору офиса
      * @throws Exception
      */
     @Test
@@ -112,7 +112,7 @@ public class UserControllerTest {
     }
 
     /**
-     * Получить пользователя по ид
+     * Получить пользователя по идентификатору
      * @throws Exception
      */
     @Test

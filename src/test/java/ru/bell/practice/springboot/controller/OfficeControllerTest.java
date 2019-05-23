@@ -45,7 +45,7 @@ public class OfficeControllerTest {
     }
 
     /**
-     * Получить список офисов по ид организации
+     * Получить список офисов по идентификатору организации
      * @throws Exception
      */
     @Test
@@ -66,7 +66,7 @@ public class OfficeControllerTest {
     }
 
     /**
-     * Получить пустой список по ид организации
+     * Получить пустой список по идентификатору организации
      * @throws Exception
      */
     @Test
@@ -113,7 +113,7 @@ public class OfficeControllerTest {
     }
 
     /**
-     * Получить офис по ид
+     * Получить офис по идентификатору
      * @throws Exception
      */
     @Test

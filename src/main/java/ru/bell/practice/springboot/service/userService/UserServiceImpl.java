@@ -44,6 +44,9 @@ public class UserServiceImpl implements  UserService {
         this.countryDao = countryDao;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<UserOutFilterView> list(UserInFilterView view) {
@@ -61,7 +64,7 @@ public class UserServiceImpl implements  UserService {
     public UserView getById(Long id) {
         User user = userDao.getById(id);
         if (user == null) {
-            throw new RecordNotFoundException();
+            throw new RecordNotFoundException("Invalid user ID");
         }
         UserView view = mapperFacade.map(user, UserView.class);
 
@@ -88,13 +91,13 @@ public class UserServiceImpl implements  UserService {
     public void update(UserUpdateView userUpdateView) {
         User user = userDao.getById(userUpdateView.getId());
         if (user == null) {
-            throw new WrongRequestException();
+            throw new WrongRequestException("Invalid user ID");
         }
 
         if (userUpdateView.getOfficeId() != null) {
             Office officeDaoById = officeDao.getById(userUpdateView.getOfficeId());
             if (officeDaoById == null) {
-                throw new WrongRequestException();
+                throw new WrongRequestException("Invalid office ID");
             }
             user.setOffice(officeDaoById);
         }
@@ -137,7 +140,7 @@ public class UserServiceImpl implements  UserService {
         User user = mapperFacade.map(userSaveView, User.class);
         Office office = officeDao.getById(userSaveView.getOfficeId());
         if (office == null) {
-            throw new WrongRequestException();
+            throw new WrongRequestException("Office ID not set correctly");
         }
         user.setOffice(office);
         user.setDocUser(saveDocUser(userSaveView));

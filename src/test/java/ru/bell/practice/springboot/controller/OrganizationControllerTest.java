@@ -106,7 +106,7 @@ public class OrganizationControllerTest {
     }
 
     /**
-     * Получить организацию по ид
+     * Получить организацию по идентификатору
      * @throws Exception
      */
     @Test
