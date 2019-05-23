@@ -4,16 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bell.practice.springboot.model.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import javax.persistence.*;
 import java.util.List;
 
 /**
- * {@inheritDoc}
+ * DAO для работы с пользлвателями
  */
 @Repository
 public class UserDaoImpl implements UserDao {

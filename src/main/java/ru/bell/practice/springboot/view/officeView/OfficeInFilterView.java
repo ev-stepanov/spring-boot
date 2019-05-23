@@ -1,8 +1,6 @@
 package ru.bell.practice.springboot.view.officeView;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class OfficeInFilterView {
     @NotNull

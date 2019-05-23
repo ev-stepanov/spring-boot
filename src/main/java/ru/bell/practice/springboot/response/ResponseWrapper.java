@@ -2,16 +2,11 @@ package ru.bell.practice.springboot.response;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
-import org.springframework.http.server.ServerHttpRequest;
-import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.http.server.*;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import ru.bell.practice.springboot.exception.RecordNotFoundException;
-import ru.bell.practice.springboot.exception.WrongRequestException;
-import ru.bell.practice.springboot.response.view.DataResponseView;
-import ru.bell.practice.springboot.response.view.ErrorResponseView;
-import ru.bell.practice.springboot.response.view.SuccessResponseView;
+import ru.bell.practice.springboot.response.view.*;
+import ru.bell.practice.springboot.exception.*;
 
 import javax.validation.ValidationException;
 

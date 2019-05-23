@@ -7,11 +7,8 @@ import ru.bell.practice.springboot.dao.countryDao.CountryDao;
 import ru.bell.practice.springboot.dao.docDao.DocDao;
 import ru.bell.practice.springboot.dao.officeDao.OfficeDao;
 import ru.bell.practice.springboot.dao.userDao.UserDao;
-import ru.bell.practice.springboot.exception.RecordNotFoundException;
-import ru.bell.practice.springboot.exception.WrongRequestException;
-import ru.bell.practice.springboot.model.DocUser;
-import ru.bell.practice.springboot.model.Office;
-import ru.bell.practice.springboot.model.User;
+import ru.bell.practice.springboot.exception.*;
+import ru.bell.practice.springboot.model.*;
 import ru.bell.practice.springboot.model.mapper.MapperFacade;
 import ru.bell.practice.springboot.view.userView.*;
 

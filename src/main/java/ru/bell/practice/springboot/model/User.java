@@ -15,7 +15,7 @@ public class User {
     private Long id;
 
     /**
-     * Специальное поле Hibernate
+     * Служебное поле Hibernate
      */
     @Version
     private Integer version;
