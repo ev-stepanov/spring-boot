@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * DAO для работы с организациями
+ * {@inheritDoc}
  */
 @Repository
 public class OrganizationDaoImpl implements  OrganizationDao {

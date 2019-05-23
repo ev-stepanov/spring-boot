@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * DAO слой удостверений
+ * {@inheritDoc}
  */
 @Repository
 public class DocDaoImpl implements DocDao {

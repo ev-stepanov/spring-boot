@@ -5,7 +5,7 @@ import ru.bell.practice.springboot.model.DocType;
 import java.util.List;
 
 /**
- * Интурфейс DAO удовстверений
+ * DAO для работы с удовстверениями
  */
 public interface DocDao {
 

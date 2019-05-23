@@ -5,7 +5,7 @@ import ru.bell.practice.springboot.view.countryView.CountryView;
 import java.util.List;
 
 /**
- * Интерфейс сервиса для гражданств
+ * Сервиса для работы с гражданствами
  */
 public interface CountryService {
 

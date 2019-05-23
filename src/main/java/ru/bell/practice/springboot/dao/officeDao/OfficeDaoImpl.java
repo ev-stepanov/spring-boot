@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * DAO для работы с офисами
+ * {@inheritDoc}
  */
 @Repository
 public class OfficeDaoImpl implements OfficeDao {

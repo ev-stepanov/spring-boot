@@ -5,7 +5,7 @@ import ru.bell.practice.springboot.model.Office;
 import java.util.List;
 
 /**
- * Интерфейс DAO для работы с офисами
+ * DAO для работы с офисами
  */
 public interface OfficeDao {
 

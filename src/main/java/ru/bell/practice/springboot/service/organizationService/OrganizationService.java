@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Интерфейс сервиса для работы с организациями
+ * Сервиса для работы с организациями
  */
 @Validated
 public interface OrganizationService {

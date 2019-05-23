@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * DAO слой гражданств
+ * {@inheritDoc}
  */
 @Repository
 public class CountryDaoImpl implements CountryDao {

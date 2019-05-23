@@ -10,7 +10,7 @@ import ru.bell.practice.springboot.view.countryView.CountryView;
 import java.util.List;
 
 /**
- * Сервис гражданств
+ * {@inheritDoc}
  */
 @Service
 public class CountryServiceImpl implements CountryService {

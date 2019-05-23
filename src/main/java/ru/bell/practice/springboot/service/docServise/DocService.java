@@ -5,7 +5,7 @@ import ru.bell.practice.springboot.view.docView.DocView;
 import java.util.List;
 
 /**
- * Интерфейс сервиса удовстверений
+ * Сервис для работы с удовстверениями
  */
 public interface DocService {
 

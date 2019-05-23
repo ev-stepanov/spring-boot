@@ -6,6 +6,9 @@ import ru.bell.practice.springboot.model.DocUser;
 
 import javax.persistence.EntityManager;
 
+/**
+ * {@inheritDoc}
+ */
 @Repository
 public class DocUserDaoImpl implements DocUserDao {
 

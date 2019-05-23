@@ -5,7 +5,7 @@ import ru.bell.practice.springboot.model.User;
 import java.util.List;
 
 /**
- * Интерфейс DAO для работы с пользователями
+ * DAO для работы с пользователями
  */
 public interface UserDao {
 

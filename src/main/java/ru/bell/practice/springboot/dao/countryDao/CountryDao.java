@@ -5,7 +5,7 @@ import ru.bell.practice.springboot.model.Country;
 import java.util.List;
 
 /**
- * Интерфейс DAO гражданств
+ * DAO для работы с гражданством
  */
 public interface CountryDao {
 

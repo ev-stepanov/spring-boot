@@ -5,7 +5,7 @@ import ru.bell.practice.springboot.model.Organization;
 import java.util.List;
 
 /**
- * Интерфейс DAO для работы с организациями
+ * DAO для работы с организациями
  */
 
 public interface OrganizationDao {

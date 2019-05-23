@@ -11,7 +11,7 @@ import ru.bell.practice.springboot.view.docView.DocView;
 import java.util.List;
 
 /**
- * Сервис удовстверений
+ * {@inheritDoc}
  */
 @Service
 public class DocServiceImpl implements DocService {

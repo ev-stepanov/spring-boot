@@ -12,7 +12,7 @@ import ru.bell.practice.springboot.view.organizationView.*;
 import java.util.List;
 
 /**
- * Сервис для работы с организациями
+ * {@inheritDoc}
  */
 @Service
 public class OrganizationServiceImpl implements OrganizationService {

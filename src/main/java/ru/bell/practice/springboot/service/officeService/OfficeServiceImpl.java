@@ -15,7 +15,7 @@ import ru.bell.practice.springboot.view.officeView.*;
 import java.util.List;
 
 /**
- * Сервис для работы с офисами
+ * {@inheritDoc}
  */
 @Service
 public class OfficeServiceImpl implements OfficeService {

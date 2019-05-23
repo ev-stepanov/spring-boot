@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Интерфейс сервиса для работы с пользователями
+ * Сервиса для работы с пользователями
  */
 @Validated
 public interface UserService {
